@@ -112,7 +112,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 export REALLY_GEM_UPDATE_SYSTEM=true
-. /usr/local/bin/django_bash_completion
+. $HOME/.django_bash_completion
 
 PROMPT_COMMAND="history -a; history -n"
 
