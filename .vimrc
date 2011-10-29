@@ -53,8 +53,6 @@ set so=7
 set wildmenu
 syn on
 
-colorscheme lucius
-
 if has("gui_running")
   set spellfile=~/.vim/spellfile.add
   setlocal spell spelllang=en_us
@@ -62,7 +60,6 @@ if has("gui_running")
   set guioptions-=m
   set guioptions-=T
   let g:no_html_toolbar = 'yes'
-
   set cursorline
 endif
 
@@ -81,7 +78,7 @@ set dir=/tmp//,.
 set background=dark
 
 hi Search		  ctermbg=red		ctermfg=0		cterm=none
-hi IncSearch 	ctermbg=red		ctermfg=0		cterm=none
+hi IncSearch 	  ctermbg=red		ctermfg=0		cterm=none
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
@@ -109,9 +106,6 @@ endfunction
 
 let g:closetag_html_style=1
 
-hi Normal           guibg=#000000
-hi Normal           ctermbg=256
-
 "au FileType python set omnifunc=pythoncomplete#Complete
 "au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "au FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -129,3 +123,7 @@ hi Normal           ctermbg=256
 "au BufWritePost *.scss :setfiletype sass
 "
 au BufEnter * :silent! %foldo!
+
+set term=screen-256color
+let g:zenburn_high_Contrast=1
+color zenburn
