@@ -1,0 +1,87 @@
+snippet for
+	{% for ${1:i} in ${2} %}
+		{{ $1. }}
+	{% endfor %}
+
+snippet if
+	{% if ${1} %}${2}{% endif %}
+
+snippet ifequal
+	{% ifequal ${1} ${2} %}${3}{% endifequal %}
+
+snippet ifnotequal
+	{% ifequal ${1} ${2} %}${3}{% endifequal %}
+
+snippet load
+	{% load ${1} %}
+
+snippet block
+	{% block ${1:title} %}{{ ${2} }}{% endblock %}
+
+snippet boiler
+	{# vim: filetype=htmldjango
+	#}
+
+snippet cache
+	{% cache 600 ${1} %}
+
+snippet endcache
+	{% endcache %}
+
+
+snippet img
+	<img src="${1}" alt="${2}" />${3}
+snippet imgc
+	<img src="${1}" alt="${2}" class="${3}" />${4}
+snippet a
+	<a href="${1}">${2}</a>${3}
+snippet ac
+	<a href="${1}" class="${2}">${3}</a>${4}
+snippet ol
+	<ol>
+		<li>${1}</li>
+	</ol>
+	${2}
+snippet ul
+	<ul>
+		<li>${1}</li>
+	</ul>
+	${2}
+snippet li
+	<li>${1}</li>
+	${2}
+snippet div
+	<div>${1}</div>
+	${2}
+snippet divc
+	<div class="${1}">${2}</div>
+	${3}
+snippet span
+	<span>${1}</span>${2}
+snippet spanc
+	<span class="${1}">${2}</span>${3}
+snippet htmlipsum
+	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+snippet h1
+	<h1>${1}</h1>
+	${2}
+snippet h2
+	<h2>${1}</h2>
+	${2}
+snippet h3
+	<h3>${1}</h3>
+	${2}
+snippet h4
+	<h4>${1}</h4>
+	${2}
+snippet p
+	<p>${1}</p>
+	${2}
+snippet pc
+	<p class="${1}">${2}</p>${3}
+snippet cite
+	<cite>${1}</cite>${2}
+snippet hr
+	<hr />
+snippet sup
+	<sup>${1}</sup>${2}
