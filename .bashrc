@@ -96,6 +96,8 @@ alias cl='cd /home/alan/dev/clinton/src/src-clinton/clinton/ && source /home/ala
 alias au='cd /home/alan/dev/auto/src/src-auto/auto/ && source /home/alan/dev/auto/bin/activate'
 alias mg='cd /home/alan/dev/mg/src/src-mg/mg/ && source /home/alan/dev/mg/bin/activate'
 
+alias svstat="ps auxf | grep cnuapp | grep -v bash | grep -v sshd"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
