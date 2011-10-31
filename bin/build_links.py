@@ -10,6 +10,7 @@ DOTFILES_LOCATION = re.sub("/bin/%s" % FILENAME, '', THIS_FILE)
 
 dotfiles = os.listdir(DOTFILES_LOCATION)
 dotfiles.remove('bin')
+dotfiles.remove('.git')
 
 for f in dotfiles:
     source = "%s/%s" % (DOTFILES_LOCATION, f)
