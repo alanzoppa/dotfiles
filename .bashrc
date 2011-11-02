@@ -128,3 +128,4 @@ export PATH=$PATH:/var/lib/gems/1.9.1/bin
 GPG_TTY=`tty` 
 export GPG_TTY
 export TERM='xterm-256color'
+export P4CONFIG=~/.p4config
