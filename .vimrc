@@ -24,8 +24,23 @@ map <F7> :call Rebuild_tags()<CR><CR>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'JK', '<Esc>')
 
-set wildignore+=/media/**,/home/alan/media/**,/home/alan/Music/**,cnu_gems/**,cabar/**,*.scssc
-set wildignore+=*/.git/*,*.pyc
+set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
+set wildignore+=*/.git/*
+set wildignore+=*.pyc,*/*.scssc
+set wildignore+=*/cabar/*,*/cnu_active_record/*,*/cnuapp_ci/*,*/cnuapp_doc/*,*/cnuapp_env/*
+set wildignore+=*/cnuapp_qa/*,*/cnuapp_rack/*,*/cnu_bloom/*,*/cnu_brand/*,*/cnu_cluster/*
+set wildignore+=*/cnu_config/*,*/cnu_content/*,*/cnu_database/*,*/cnu_gems/*,*/cnu_ivr/*
+set wildignore+=*/cnu_ldap/*,*/cnu_locale/*,*/cnu_logger/*,*/cnu_memcache/*,*/cnu_perf/*
+set wildignore+=*/cnu_pg/*,*/cnu_product_offering/*,*/cnu_rails_app/*,*/cnu_regexp/*
+set wildignore+=*/cnu_ruby_build/*,*/cnu_ruby_core/*,*/cnu_ruby_lib/*,*/cnu_sass/*,*/cnu_scm/*
+set wildignore+=*/cnu_selenium/*,*/cnu_service/*,*/cnu_space/*,*/cnu_test/*,*/contenter_api/*
+set wildignore+=*/cookbooks/*,*/db_global/*,*/doc/*,*/enf_app/*,*/enf_log/*,*/lsws-3.3.14/*
+set wildignore+=*/mod_rails/*,*/rails-1.2/*,*/red_steak/*,*/screenshots/*,*/shout_trace/*
+set wildignore+=*/sol_api/*,*/trick_serial/*,*/waffles/*,*/wtf/*
+
+let g:ctrlp_max_files =0
+let g:ctrlp_max_depth =1000
+let g:ctrlp_max_height = 50
 
 let g:CommandTMaxFiles=50000
 
