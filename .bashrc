@@ -83,6 +83,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Remember, OSX doesn't use .bashrc
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
@@ -96,7 +97,9 @@ alias cl='cd /home/alan/dev/clinton/src/src-clinton/clinton/ && source /home/ala
 alias au='cd /home/alan/dev/auto/src/src-auto/auto/ && source /home/alan/dev/auto/bin/activate'
 alias mg='cd /home/alan/dev/mg/src/src-mg/mg/ && source /home/alan/dev/mg/bin/activate'
 
+#Work stuff
 alias svstat="watch -n 1 'ps auxf | grep cnuapp | grep -v bash | grep -v sshd'"
+alias rebuild_db="sh ~/scripts/rebuild_db.sh"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
