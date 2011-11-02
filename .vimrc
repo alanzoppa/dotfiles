@@ -25,6 +25,7 @@ call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'JK', '<Esc>')
 
 set wildignore+=/media/**,/home/alan/media/**,/home/alan/Music/**,cnu_gems/**,cabar/**,*.scssc
+set wildignore+=*/.git/*,*.pyc
 
 let g:CommandTMaxFiles=50000
 
