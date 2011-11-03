@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/alan'
 let g:netrw_dirhist_2='/home/alan/.Skype'
 let g:netrw_dirhist_3='/home/alan/.Skype/c_alan_zoppa'
 let g:netrw_dirhist_4='/home/alan/.Skype'
 let g:netrw_dirhist_5='/home/alan'
 let g:netrw_dirhist_6='/home/alan/.aptitude'
+let g:netrw_dirhist_7='/usr/share/dict'

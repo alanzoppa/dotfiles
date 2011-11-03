@@ -98,7 +98,7 @@ alias au='cd /home/alan/dev/auto/src/src-auto/auto/ && source /home/alan/dev/aut
 alias mg='cd /home/alan/dev/mg/src/src-mg/mg/ && source /home/alan/dev/mg/bin/activate'
 
 #Work stuff
-alias svstat="watch -n 1 'ps auxf | grep cnuapp | grep -v bash | grep -v sshd'"
+alias svstat='watch -n 0.5 "ps auxf | grep -v \"\[\" | grep -v MailmanService | grep -v postgres | grep cnu"'
 alias rebuild_db="sh ~/scripts/rebuild_db.sh"
 
 # Alias definitions.
