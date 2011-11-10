@@ -41,6 +41,7 @@ set wildignore+=*/sol_api/*,*/trick_serial/*,*/waffles/*,*/wtf/*
 let g:ctrlp_max_files =0
 let g:ctrlp_max_depth =1000
 let g:ctrlp_max_height = 50
+let g:ctrlp_working_path_mode = 0
 
 let g:CommandTMaxFiles=50000
 

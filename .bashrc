@@ -119,8 +119,6 @@ fi
 export REALLY_GEM_UPDATE_SYSTEM=true
 . $HOME/.django_bash_completion
 
-PROMPT_COMMAND="history -a; history -n"
-
 export PATH=$PATH:/var/lib/gems/1.9.1/bin
 
 
