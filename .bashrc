@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples 
 PATH=$PATH:/usr/local/bin:/home/alan/bin/p4v/bin
+export HOSTNAME="$(cat /etc/hostname)"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -83,23 +84,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Remember, OSX doesn't use .bashrc
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-alias fc='cd /home/alan/dev/foodchannel/src/src-foodchannel/foodchannel/ && source /home/alan/dev/foodchannel/bin/activate'
-alias av='cd /home/alan/dev/av/src/src-av/av/ && source /home/alan/dev/av/bin/activate'
-alias cl='cd /home/alan/dev/clinton/src/src-clinton/clinton/ && source /home/alan/dev/clinton/bin/activate'
-alias au='cd /home/alan/dev/auto/src/src-auto/auto/ && source /home/alan/dev/auto/bin/activate'
-alias mg='cd /home/alan/dev/mg/src/src-mg/mg/ && source /home/alan/dev/mg/bin/activate'
-
 #Work stuff
 alias svstat='watch -n 0.5 "ps auxf | grep -v \"\[\" | grep -v MailmanService | grep -v postgres | grep cnu"'
 alias rebuild_db="sh ~/scripts/rebuild_db.sh"
+alias bcr="bin/cnurake"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -116,14 +104,15 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-export REALLY_GEM_UPDATE_SYSTEM=true
-. $HOME/.django_bash_completion
 
 export PATH=$PATH:/var/lib/gems/1.9.1/bin
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-GPG_TTY=`tty` 
-export GPG_TTY
+export GPG_TTY='tty'
 export TERM='xterm-256color'
 export P4CONFIG=~/.p4config
+
+if [ -f ~/.${HOSTNAME}_bashrc ]; then
+    . ~/.${HOSTNAME}_bashrc
+fi

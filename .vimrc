@@ -25,7 +25,7 @@ call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'JK', '<Esc>')
 
 set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
-set wildignore+=*/.git/*
+"set wildignore+=*/.git/* " This line breaks fugitive.vim
 set wildignore+=*.pyc,*/*.scssc
 set wildignore+=*/cabar/*,*/cnu_active_record/*,*/cnuapp_ci/*,*/cnuapp_doc/*,*/cnuapp_env/*
 set wildignore+=*/cnuapp_qa/*,*/cnuapp_rack/*,*/cnu_bloom/*,*/cnu_brand/*,*/cnu_cluster/*
