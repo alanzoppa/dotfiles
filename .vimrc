@@ -133,12 +133,16 @@ let g:closetag_html_style=1
 "au BufNewFile,BufRead *.j setf objj 
 "au BufReadPost * :call Rebuild_tags()
 "au BufReadPost * :syn on
-"au BufWritePost *.py :call Rebuild_tags()
+au BufWritePost *.py,*.rb silent! !ctags -R &
+
+
 "au BufWritePost *.js :call Rebuild_tags()
 "au BufReadPost *.html :call Set_htmldjango()
 "au Filetype html,xml,xsl,php source ~/.vim/scripts/closetag.vim 
 "au BufWritePost *.scss :setfiletype sass
 "
+autocmd BufRead *.txt set lbr
+
 au BufEnter * :silent! %foldo!
 
 set term=screen-256color
