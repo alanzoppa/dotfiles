@@ -3,7 +3,10 @@ alias av="cd /home/alan/dev/av/src/src-av/av/ && source /home/alan/dev/av/bin/ac
 alias cl="cd /home/alan/dev/clinton/src/src-clinton/clinton/ && source /home/alan/dev/clinton/bin/activate"
 alias au="cd /home/alan/dev/auto/src/src-auto/auto/ && source /home/alan/dev/auto/bin/activate"
 alias mg="cd /home/alan/dev/mg/src/src-mg/mg/ && source /home/alan/dev/mg/bin/activate"
+alias pr="cd /home/alan/dev/alan/src/portfolio/ && source /home/alan/dev/alan/bin/activate"
 
 export REALLY_GEM_UPDATE_SYSTEM=true
 . $HOME/.django_bash_completion
 
+GPG_TTY=`tty` 
+export GPG_TTY 

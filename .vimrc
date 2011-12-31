@@ -9,7 +9,7 @@ imap <M-j> <Esc>
 imap <D-j> <Esc>
 imap <M-k> <C-x><C-o>
 imap <D-k> <C-x><C-o>
-map <Leader>r :! rspec %<CR>
+map <Leader>r :! rspec ./spec/<CR>
 map <Leader>p :! ez-promote %<CR>
 map <Leader>e :! p4 edit %<CR>
 map <Leader>a :! p4 add % && chmod +w %<CR>
@@ -102,11 +102,11 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 
 let NERDTreeIgnore=['.pyc$',]
 
-function! Rebuild_tags ()
-    if filereadable('settings.py') && filereadable('manage.py')
-        silent! !ctags -R --exclude=*.sql --exclude=*.tar . &
-    endif
-endfunction
+"function! Rebuild_tags ()
+    "if filereadable('settings.py') && filereadable('manage.py')
+        "silent! !ctags -R --exclude=*.sql --exclude=*.tar . &
+    "endif
+"endfunction
 
 function! Set_htmldjango()
     if filereadable('settings.py') && filereadable('manage.py')
@@ -133,7 +133,7 @@ let g:closetag_html_style=1
 "au BufNewFile,BufRead *.j setf objj 
 "au BufReadPost * :call Rebuild_tags()
 "au BufReadPost * :syn on
-au BufWritePost *.py,*.rb silent! !ctags -R &
+"au BufWritePost *.py,*.rb silent! !ctags -R &
 
 
 "au BufWritePost *.js :call Rebuild_tags()

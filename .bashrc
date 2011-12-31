@@ -88,6 +88,8 @@ alias l='ls -CF'
 alias svstat='watch -n 0.5 "ps auxf | grep -v \"\[\" | grep -v MailmanService | grep -v postgres | grep cnu"'
 alias rebuild_db="sh ~/scripts/rebuild_db.sh"
 alias bcr="bin/cnurake"
+alias snow="python /home/alan/scripts/snow/snowjob.py"
+
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -105,11 +107,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export PATH=$PATH:/var/lib/gems/1.9.1/bin
+export PATH=$PATH:/var/lib/gems/1.9.1/bin::/home/alan/dev/mvcforms
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-export GPG_TTY='tty'
 export TERM='xterm-256color'
 export P4CONFIG=~/.p4config
 

@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/alan'
-let g:netrw_dirhist_2='/home/alan/.Skype'
-let g:netrw_dirhist_3='/home/alan/.Skype/c_alan_zoppa'
-let g:netrw_dirhist_4='/home/alan/.Skype'
-let g:netrw_dirhist_5='/home/alan'
-let g:netrw_dirhist_6='/home/alan/.aptitude'
-let g:netrw_dirhist_7='/usr/share/dict'
-let g:netrw_dirhist_8='/home/alan/.mozilla/firefox/6ztqgy3r.default/gm_scripts/cnu_klendathu'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/alan/dev/proforma'
