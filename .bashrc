@@ -113,6 +113,7 @@ export PATH=$PATH:/var/lib/gems/1.9.1/bin::/home/alan/dev/mvcforms
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export TERM='xterm-256color'
 export P4CONFIG=~/.p4config
+export UBUNTU_MENUPROXY= #fixes weird menu error when opening gtk apps from cli
 
 if [ -f ~/.${HOSTNAME}_bashrc ]; then
     . ~/.${HOSTNAME}_bashrc

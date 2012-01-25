@@ -10,3 +10,7 @@ export REALLY_GEM_UPDATE_SYSTEM=true
 
 GPG_TTY=`tty` 
 export GPG_TTY 
+
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+

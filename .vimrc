@@ -148,3 +148,8 @@ au BufEnter * :silent! %foldo!
 set term=screen-256color
 let g:zenburn_high_Contrast=1
 color zenburn
+
+let html_use_css = 1
+"let html_number_lines = 0
+let html_no_pre = 1
+set background=dark
