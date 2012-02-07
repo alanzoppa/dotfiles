@@ -89,6 +89,7 @@ alias svstat='watch -n 0.5 "ps auxf | grep -v \"\[\" | grep -v MailmanService | 
 alias rebuild_db="sh ~/scripts/rebuild_db.sh"
 alias bcr="bin/cnurake"
 alias snow="python /home/alan/scripts/snow/snowjob.py"
+alias ti="$HOME/scripts/tea.rb"
 
 
 # Alias definitions.
