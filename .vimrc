@@ -37,6 +37,7 @@ set wildignore+=*/cnu_selenium/*,*/cnu_service/*,*/cnu_space/*,*/cnu_test/*,*/co
 set wildignore+=*/cookbooks/*,*/db_global/*,*/doc/*,*/enf_app/*,*/enf_log/*,*/lsws-3.3.14/*
 set wildignore+=*/mod_rails/*,*/rails-1.2/*,*/red_steak/*,*/screenshots/*,*/shout_trace/*
 set wildignore+=*/sol_api/*,*/trick_serial/*,*/waffles/*,*/wtf/*
+set wildignore+=*static/CACHE/css/*
 
 let g:ctrlp_max_files =0
 let g:ctrlp_max_depth =1000
@@ -115,8 +116,8 @@ let NERDTreeIgnore=['.pyc$',]
 "endfunction
 
 function! Set_htmldjango()
-    if filereadable('settings.py') && filereadable('manage.py')
-        setfiletype htmldjango
+    if filereadable('settings.py') && filereadable('../manage.py')
+        setfiletype django
     endif
 endfunction
 
@@ -143,7 +144,7 @@ let g:closetag_html_style=1
 
 
 "au BufWritePost *.js :call Rebuild_tags()
-"au BufReadPost *.html :call Set_htmldjango()
+au BufEnter *.html :call Set_htmldjango()
 "au Filetype html,xml,xsl,php source ~/.vim/scripts/closetag.vim 
 "au BufWritePost *.scss :setfiletype sass
 "
