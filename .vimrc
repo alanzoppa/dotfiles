@@ -117,7 +117,7 @@ let NERDTreeIgnore=['.pyc$',]
 
 function! Set_htmldjango()
     if filereadable('settings.py') && filereadable('../manage.py')
-        setfiletype django
+        setfiletype htmldjango
     endif
 endfunction
 
