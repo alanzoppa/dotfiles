@@ -38,6 +38,15 @@ set wildignore+=*/cookbooks/*,*/db_global/*,*/doc/*,*/enf_app/*,*/enf_log/*,*/ls
 set wildignore+=*/mod_rails/*,*/rails-1.2/*,*/red_steak/*,*/screenshots/*,*/shout_trace/*
 set wildignore+=*/sol_api/*,*/trick_serial/*,*/waffles/*,*/wtf/*
 set wildignore+=*static/CACHE/css/*
+"stuff in cnuapp
+set wildignore+=*/cnuapp/admin/*,*/cnuapp/apache/*,*/cnuapp/bin/*,*/cnuapp/db/*
+set wildignore+=*/cnuapp/debian/*,*/cnuapp/gems/*,*/cnuapp/gui/*,*/cnuapp/include/*
+set wildignore+=*/cnuapp/lib/*,*/cnuapp/locproot/*,*/cnuapp/lsws/*,*/cnuapp/noderoot/*
+set wildignore+=*/cnuapp/plugins/*,*/cnuapp/queries/*,*/cnuapp/Rakefile/*,*/cnuapp/Rakefile.US/*
+set wildignore+=*/cnuapp/result.GB/*,*/cnuapp/result.GB.fail/*,*/cnuapp/result.GB.last/*
+set wildignore+=*/cnuapp/result.GB.pass/*,*/cnuapp/script/*,*/cnuapp/src/*,*/cnuapp/test/*
+set wildignore+=*/cnuapp/tmp/*,*/cnuapp/tools/*,*/cnuapp/typeroot/*,*/cnuapp/var/*
+set wildignore+=*/cnuapp/vendor/*
 
 let g:ctrlp_max_files =0
 let g:ctrlp_max_depth =1000
@@ -75,6 +84,7 @@ set tabpagemax=30
 set ts=4
 set so=7
 set wildmenu
+set wildmode=longest,list,full
 syn on
 
 if has("gui_running")
