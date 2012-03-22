@@ -20,6 +20,9 @@ map <F12> :call EndWordComplete()<CR>
 map <F6> :setfiletype html<CR>
 map <F7> :call Rebuild_tags()<CR><CR>
 
+vnoremap < <gv
+vnoremap > >gv
+
 ":Arpeggio inoremap jk <Esc>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'JK', '<Esc>')
