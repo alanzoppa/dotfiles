@@ -289,7 +289,7 @@ if &t_Co > 255
     hi SpecialComment  ctermfg=108   cterm=bold
     hi Special         ctermfg=181
     hi SpecialKey      ctermfg=151
-    hi Statement       ctermfg=187   ctermbg=234     cterm=none
+    hi Statement       ctermfg=187   "ctermbg=234     cterm=none
     hi StatusLine      ctermfg=236   ctermbg=186
     hi StatusLineNC    ctermfg=235   ctermbg=108
     hi StorageClass    ctermfg=249   cterm=bold
@@ -317,7 +317,7 @@ if &t_Co > 255
     hi PMenuSel   ctermfg=223 ctermbg=235
 
     if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
-        hi Normal ctermfg=188 ctermbg=234
+        hi Normal ctermfg=188 "ctermbg=234
         hi NonText         ctermfg=238
 
         if exists("g:zenburn_color_also_Ignore") && g:zenburn_color_also_Ignore
@@ -333,7 +333,7 @@ if &t_Co > 255
             hi CursorColumn      ctermbg=235   cterm=none
         endif
     else
-        hi Normal ctermfg=188 ctermbg=237
+        hi Normal ctermfg=188 "ctermbg=237
         hi Cursor          ctermbg=109
         hi diffadd         ctermbg=237
         hi diffdelete      ctermbg=238
@@ -342,7 +342,7 @@ if &t_Co > 255
         hi incsearch       ctermbg=228
         hi linenr          ctermbg=235
         hi search          ctermbg=238
-        hi statement       ctermbg=237
+        "hi statement       ctermbg=237
         hi statusline      ctermbg=144
         hi statuslinenc    ctermbg=108
         hi title           ctermbg=237
