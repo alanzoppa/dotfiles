@@ -89,6 +89,9 @@ set ts=4
 set so=7
 set wildmenu
 set wildmode=longest,list,full
+set ignorecase
+set smartcase
+
 syn on
 
 if has("gui_running")
