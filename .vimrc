@@ -19,6 +19,7 @@ map <F11> :call DoWordComplete()<CR>
 map <F12> :call EndWordComplete()<CR>
 map <F6> :setfiletype html<CR>
 map <F7> :call Rebuild_tags()<CR><CR>
+map <Leader>a ggVG
 
 vnoremap < <gv
 vnoremap > >gv
@@ -163,6 +164,7 @@ au BufEnter *.html :call Set_htmldjango()
 "au BufWritePost *.scss :setfiletype sass
 "
 autocmd BufRead *.txt set lbr
+autocmd FileType gitcommit DiffGitCached | wincmd = | wincmd p
 
 au BufEnter * :silent! %foldo!
 
