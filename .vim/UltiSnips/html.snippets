@@ -163,7 +163,17 @@ snip.rv = snip.fn and 'Hallo' or 'Nothin'
 endsnippet
 
 snippet div "XHTML <div>"
+<div>$0</div>
+endsnippet
+
+snippet divid "XHTML <div>"
 <div${1: id="${2:name}"}>
+	$0
+</div>
+endsnippet
+
+snippet divc "XHTML <div>"
+<div${1: class="${2:name}"}>
 	$0
 </div>
 endsnippet
@@ -179,7 +189,19 @@ snip.rv = (snip.basename or 'unnamed') + '_submit'
 endsnippet
 
 snippet h1 "XHTML <h1>"
-<h1 id="${1/[\w\d]+|( )/(?1:_:\L$0\E)/g}">${1}</h1>
+<h1>${1}</h1>
+endsnippet
+
+snippet h2 "XHTML <h1>"
+<h2>${1}</h2>
+endsnippet
+
+snippet h3 "XHTML <h1>"
+<h3>${1}</h3>
+endsnippet
+
+snippet h4 "XHTML <h1>"
+<h4>${1}</h4>
 endsnippet
 
 snippet head "XHTML <head>"
@@ -230,7 +252,7 @@ snippet p "paragraph"
 endsnippet
 
 snippet li "list item"
-<li></li>
+<li>${1}</li>
 endsnippet
 
 snippet ul "unordered list"
