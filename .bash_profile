@@ -119,3 +119,5 @@ export UBUNTU_MENUPROXY= #fixes weird menu error when opening gtk apps from cli
 if [ -f ~/.${HOSTNAME}_bashrc ]; then
     . ~/.${HOSTNAME}_bashrc
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
