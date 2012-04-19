@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+HOSTNAME="$(cat /etc/hostname)"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -37,6 +38,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 #
 #
-if [[ -a ~/.yatima_zshrc ]]; then
-    source ~/.yatima_zshrc
+if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
+    source ~/.${HOSTNAME}_zshrc
 fi
