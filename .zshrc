@@ -31,13 +31,23 @@ ZSH_THEME="gentoo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git battery bundler debian django gpg-agent rails python terminator)
+#plugins=(battery bundler debian django rails python)
 
-source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 #
 #
+#
+autoload -U compinit && compinit
+
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
 fi
+
+
+source $ZSH/oh-my-zsh.sh
+
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
+source ~/.git-completion.sh
