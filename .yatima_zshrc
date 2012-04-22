@@ -23,4 +23,4 @@ vv () {
     source $SRC_DIRECTORY/$1/bin/activate;
     cd $SRC_DIRECTORY/$1/src/src-$1/$1;
 }
-rvm use system
+compdef '_files -W "$SRC_DIRECTORY"' vv
