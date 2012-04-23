@@ -24,6 +24,11 @@ map <Leader>a ggVG
 vnoremap < <gv
 vnoremap > >gv
 
+call pathogen#infect()
+call pathogen#helptags()
+
+
+
 ":Arpeggio inoremap jk <Esc>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'JK', '<Esc>')

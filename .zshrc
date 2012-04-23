@@ -10,8 +10,6 @@ COMPLETION_WAITING_DOTS="true"
 
 AUTO_CD="true"
 
-PS1='%{$fg[white]%}%n%{$fg[cyan]%}:%{$fg_no_bold[yellow]%}%3~%{$fg_no_bold[green]%}$(git_info_for_prompt)%{$fg_no_bold[magenta]%}$(rvm_info_for_prompt)%{$reset_color%}# '
-
 # this tests for the presence of rvm 
 # if its loaded, it'll add the prompt
 function rvm_info_for_prompt {
