@@ -1,0 +1,16 @@
+alias bcr="cd /export/comp/stable/cnuapp && bin/cnurake"
+alias console="cd /export/comp/stable && cnuapp/script/console"
+
+rebuild_db () {
+    cwd=$(pwd);
+    cd /etc/cnu;
+    if [[ $1 == "US" ]] then
+        cd /export/web/cnuapp
+        p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=US name=cnuapp_dev usep4=1
+        cd $cwd
+    else
+        cd /export/web/cnuapp
+        p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=$1 name=cnuapp_dev_$(echo $1 | sed 's/.*/\L&\E/g') usep4=1
+        cd $cwd
+    fi
+}
