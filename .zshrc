@@ -8,8 +8,6 @@ DISABLE_AUTO_UPDATE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-AUTO_CD="true"
-
 # this tests for the presence of rvm 
 # if its loaded, it'll add the prompt
 function rvm_info_for_prompt {
@@ -38,6 +36,9 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 PS1='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(rvm_info_for_prompt) $(git_prompt_info)%#%{$reset_color%} '
+
+setopt auto_cd
+setopt auto_pushd
 
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
