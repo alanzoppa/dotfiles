@@ -1,6 +1,8 @@
 alias bcr="cd /export/comp/stable/cnuapp && bin/cnurake"
 alias console="cd /export/comp/stable && cnuapp/script/console"
 
+export EDITOR='/usr/local/bin/vim'
+
 rebuild_db () {
     cwd=$(pwd);
     cd /etc/cnu;
