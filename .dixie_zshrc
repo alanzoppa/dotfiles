@@ -1,0 +1,1 @@
+alias slavedb="psql -U czoppa -h slavedb.quickquid.co.uk -p 5432 cnuapp_prod_uk"
