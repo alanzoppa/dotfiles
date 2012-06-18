@@ -1,6 +1,9 @@
 alias bcr="cd /export/comp/stable/cnuapp && bin/cnurake"
 alias console="cd /export/comp/stable && cnuapp/script/console"
 
+alias git_today='cd /export/comp/stable && git log --all --committer=czoppa --since=24.hours'
+alias git_this_week='cd /export/comp/stable && git log --all --committer=czoppa --since=7.days'
+
 export EDITOR='/usr/local/bin/vim'
 
 rebuild_db () {
