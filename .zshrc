@@ -40,6 +40,10 @@ PS1='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%
 setopt auto_cd
 setopt auto_pushd
 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
 fi
