@@ -43,7 +43,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
-source.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
 
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
