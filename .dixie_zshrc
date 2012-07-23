@@ -4,3 +4,5 @@ alias pbpaste='xsel --clipboard --output'
 
 alias git_today='ssh wm "cd /export/comp/stable && git log --all --committer=czoppa --since=24.hours" | pbcopy'
 alias git_this_week='ssh wm "cd /export/comp/stable && git log --all --committer=czoppa --since=7.days" | pbcopy'
+
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
