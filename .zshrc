@@ -24,7 +24,6 @@ export TERM='xterm-256color'
 
 autoload -U compinit && compinit
 
-
 source $ZSH/oh-my-zsh.sh
 
 __git_files () { 
@@ -35,7 +34,7 @@ source ~/.git-completion.sh
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-PS1='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(rvm_info_for_prompt) $(git_prompt_info)%#%{$reset_color%} '
+PS1='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(rvm_info_for_prompt) $(current_branch)%#%{$reset_color%} '
 
 setopt auto_cd
 setopt auto_pushd

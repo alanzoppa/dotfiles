@@ -48,7 +48,7 @@ set wildignore+=*/mod_rails/*,*/rails-1.2/*,*/red_steak/*,*/screenshots/*,*/shou
 set wildignore+=*/sol_api/*,*/trick_serial/*,*/waffles/*,*/wtf/*
 set wildignore+=*static/CACHE/css/*
 "stuff in cnuapp
-set wildignore+=*/cnuapp/admin/*,*/cnuapp/apache/*,*/cnuapp/bin/*
+set wildignore+=*/cnuapp/apache/*,*/cnuapp/bin/*
 set wildignore+=*/cnuapp/debian/*,*/cnuapp/gems/*,*/cnuapp/gui/*,*/cnuapp/include/*
 set wildignore+=*/cnuapp/locproot/*,*/cnuapp/lsws/*,*/cnuapp/noderoot/*
 set wildignore+=*/cnuapp/plugins/*,*/cnuapp/queries/*,*/cnuapp/Rakefile/*,*/cnuapp/Rakefile.US/*
