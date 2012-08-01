@@ -11,11 +11,19 @@ rebuild_db () {
     cd /etc/cnu;
     if [[ $1 == "US" ]] then
         cd /export/web/cnuapp
-        p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=US name=cnuapp_dev usep4=1
+        PGPORT=5434 ver=8.3 verbose=1 p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=US name=cnuapp_dev
+        cd $cwd
+    elif [[ $1 == "GB" ]] then
+        cd /export/web/cnuapp
+        PGPORT=5434 ver=8.4 verbose=1 p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=$1 name=cnuapp_dev_$(echo $1 | sed 's/.*/\L&\E/g')
+        cd $cwd
+    elif [[ $1 == "CA" ]] then
+        cd /export/web/cnuapp
+        PGPORT=5434 ver=8.4 verbose=1 p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=$1 name=cnuapp_dev_$(echo $1 | sed 's/.*/\L&\E/g')
         cd $cwd
     else
         cd /export/web/cnuapp
-        p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=$1 name=cnuapp_dev_$(echo $1 | sed 's/.*/\L&\E/g') usep4=1
+        PGPORT=5434 ver=8.3 verbose=1 p4dbroot=/export/db /export/web/cnuapp/bin/cnurake db:rebuild cluster=$1 name=cnuapp_dev_$(echo $1 | sed 's/.*/\L&\E/g')
         cd $cwd
     fi
 }
