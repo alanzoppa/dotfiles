@@ -18,7 +18,7 @@ function rvm_info_for_prompt {
 }
 
 
-plugins=(git battery debian django rails python rvm)
+plugins=(git battery debian django rails python rvm virtualenvwrapper)
 
 export TERM='xterm-256color'
 
