@@ -58,3 +58,9 @@
 [submodule ".vim/bundle/handlebars"]
 	path = .vim/bundle/handlebars
 	url = git://github.com/nono/vim-handlebars.git
+[submodule ".vim/bundle/badwolf"]
+	path = .vim/bundle/badwolf
+	url = git://github.com/sjl/badwolf.git
+[submodule ".smyck"]
+	path = .smyck
+	url = https://github.com/hukl/Smyck-Color-Scheme.git
