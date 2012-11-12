@@ -1,0 +1,2 @@
+--type-add=coffee=.coffee
+--type-add=js=.js,.coffee
