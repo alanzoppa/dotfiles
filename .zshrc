@@ -36,6 +36,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 PS1='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(rvm_info_for_prompt) $(current_branch)%#%{$reset_color%} '
 
+alias lt='ls -t'
+
 setopt auto_cd
 setopt auto_pushd
 
