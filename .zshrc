@@ -1,8 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
 HOSTNAME="$(cat /etc/hostname)"
-
-ZSH_THEME="gentoo"
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -18,13 +15,11 @@ function rvm_info_for_prompt {
 }
 
 
-plugins=(git battery debian django rails python rvm virtualenvwrapper)
 
 export TERM='xterm-256color'
 
 autoload -U compinit && compinit
 
-source $ZSH/oh-my-zsh.sh
 
 __git_files () { 
     _wanted files expl 'local files' _files     
@@ -33,8 +28,6 @@ source ~/.git-completion.sh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-PS1='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(rvm_info_for_prompt) $(current_branch)%#%{$reset_color%} '
 
 alias lt='ls -t'
 alias lta='ls -ta'
@@ -50,4 +43,18 @@ if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
 fi
 
+export ZSH=$HOME/.oh-my-zsh 
+export ZSH_CUSTOM=$HOME/.zsh_custom
+plugins=(git battery debian django rails python rvm virtualenvwrapper)
+#ZSH_THEME="gentoo"
+#export ZSH_THEME='bira' 
+export ZSH_THEME='suvash'
+#export ZSH_THEME='murilasso'
+#export ZSH_THEME='cloud'
 
+#export ZSH_THEME='crunch'
+#export ZSH_THEME='fletcherm'
+#export ZSH_THEME='miloshadzic'
+export ZSH_THEME='alantheme'
+
+source $ZSH/oh-my-zsh.sh
