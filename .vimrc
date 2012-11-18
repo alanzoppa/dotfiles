@@ -20,14 +20,14 @@ map <F12> :call EndWordComplete()<CR>
 map <F6> :setfiletype html<CR>
 map <F7> :call Rebuild_tags()<CR><CR>
 map <Leader>a ggVG
+map <Leader>tt :hi Normal ctermbg=none<CR>
+map <Leader>oo :color zenburn<CR>
 
 vnoremap < <gv
 vnoremap > >gv
 
 call pathogen#infect()
-call pathogen#helptags()
-
-
+call pathogen#helptags() 
 
 ":Arpeggio inoremap jk <Esc>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
@@ -77,8 +77,6 @@ set backspace=indent,eol,start
 set completeopt=menu
 
 set dictionary=/usr/share/dict/words
-"set complete-=k complete+=k
-
 
 set expandtab
 set history=300
@@ -134,44 +132,15 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 
 let NERDTreeIgnore=['.pyc$',]
 
-"function! Rebuild_tags ()
-    "if filereadable('settings.py') && filereadable('manage.py')
-        "silent! !ctags -R --exclude=*.sql --exclude=*.tar . &
-    "endif
-"endfunction
-
 function! Set_htmldjango()
     if filereadable('settings.py') && filereadable('../manage.py')
         setfiletype htmldjango
     endif
 endfunction
 
-
-    "augroup EditHTML
-		"autocmd!
-        "autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-    "augroup END
-
-
 let g:closetag_html_style=1
 
-"au FileType python set omnifunc=pythoncomplete#Complete
-"au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"au FileType html set omnifunc=htmlcomplete#CompleteTags
-"au FileType css set omnifunc=csscomplete#CompleteCSS
-"au FileType xml set omnifunc=xmlcomplete#CompleteTags
-"au FileType php set omnifunc=phpcomplete#CompletePHP
-"au FileType c set omnifunc=ccomplete#Complete
-"au BufNewFile,BufRead *.j setf objj 
-"au BufReadPost * :call Rebuild_tags()
-"au BufReadPost * :syn on
-"au BufWritePost *.py,*.rb silent! !ctags -R &
-
-
-"au BufWritePost *.js :call Rebuild_tags()
 au BufEnter *.html :call Set_htmldjango()
-"au Filetype html,xml,xsl,php source ~/.vim/scripts/closetag.vim 
-"au BufWritePost *.scss :setfiletype sass
 "
 autocmd BufRead *.txt set lbr
 autocmd FileType gitcommit DiffGitCached | wincmd = | wincmd p
@@ -184,6 +153,4 @@ let g:zenburn_high_Contrast=1
 color zenburn
 
 let html_use_css = 1
-"let html_number_lines = 0
 let html_no_pre = 1
-
