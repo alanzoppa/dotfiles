@@ -3,6 +3,7 @@ setup:
 	make update
 	sudo apt-get install zsh tmux
 	curl -L https://get.rvm.io | bash -s stable --ruby
+	rvm pkg install libyaml
 	sh .oh-my-zsh/tools/install.sh
 	gem install tmuxinator
 
