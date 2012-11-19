@@ -9,7 +9,7 @@ HOME_DIR = os.environ['HOME']
 THIS_FILE = os.path.abspath(__file__)
 FILENAME = re.sub('.*/', '', THIS_FILE)
 DOTFILES_LOCATION = re.sub("/bin/%s" % FILENAME, '', THIS_FILE)
-IGNOREABLE_FILES = [ 'bin', '.git', '.gitignore', 'README.md', ]
+IGNOREABLE_FILES = [ 'bin', '.git', '.gitignore', 'README.md', 'Makefile']
 
 dotfiles = os.listdir(DOTFILES_LOCATION)
 
