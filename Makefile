@@ -2,11 +2,12 @@ setup:
 	git submodule init
 	git submodule update
 	python bin/build_links.py
-	sudo apt-get install -y zsh tmux libtool ncurses-dev readline python-pip
+	sudo apt-get install -y zsh tmux libtool ncurses-dev readline python-pip libyaml-0-2
 	sudo pip install virtualenvwrapper
 	curl -L https://get.rvm.io | bash -s stable --ruby
 	rvm pkg install libyaml
 	rvm pkg install readline
+	rvm pkg install zlib --verify-downloads 1
 	make standardize_rvm
 	sh .oh-my-zsh/tools/install.sh
 	gem install tmuxinator
