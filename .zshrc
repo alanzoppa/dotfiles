@@ -39,22 +39,13 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
-if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
-    source ~/.${HOSTNAME}_zshrc
-fi
-
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
 plugins=(git battery debian django rails python rvm virtualenvwrapper)
-#ZSH_THEME="gentoo"
-#export ZSH_THEME='bira' 
-export ZSH_THEME='suvash'
-#export ZSH_THEME='murilasso'
-#export ZSH_THEME='cloud'
-
-#export ZSH_THEME='crunch'
-#export ZSH_THEME='fletcherm'
-#export ZSH_THEME='miloshadzic'
 export ZSH_THEME='alantheme'
 
 source $ZSH/oh-my-zsh.sh
+
+if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
+    source ~/.${HOSTNAME}_zshrc
+fi
