@@ -18,9 +18,11 @@ export GPG_TTY
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
-SRC_DIRECTORY="$HOME/dev"
+SRC_DIRECTORY="$HOME/local_dev"
 vv () {
     source $SRC_DIRECTORY/$1/bin/activate;
     cd $SRC_DIRECTORY/$1/src/src-$1/$1;
 }
 compdef '_files -W "$SRC_DIRECTORY"' vv
+
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
