@@ -6,3 +6,8 @@ alias git_today='ssh wm "cd /export/comp/stable && git log --all --committer=czo
 alias git_this_week='ssh wm "cd /export/comp/stable && git log --all --committer=czoppa --since=7.days" | pbcopy'
 
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#function prompt_char {
+#    echo '↪'
+#}
+ 
