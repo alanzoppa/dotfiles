@@ -45,6 +45,7 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/.zsh_custom
 plugins=(git battery debian django rails python rvm)
 export ZSH_THEME='alantheme'
+export DOTFILES_DIR=$HOME/.dotfiles
 
 source $ZSH/oh-my-zsh.sh
 

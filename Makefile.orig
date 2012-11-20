@@ -2,9 +2,14 @@ setup:
 	git submodule init
 	git submodule update
 	python bin/build_links.py
+<<<<<<< Updated upstream
 	sudo apt-get install -y tmux libtool ncurses-dev libreadline-ruby libyaml-dev vim-full exuberant-ctags mercurial
 	make setup_vim
 	make setup_zsh
+=======
+	sudo apt-get install -y zsh tmux libtool ncurses-dev readline python-pip libyaml-0-2 ack-grep
+	sudo pip install virtualenvwrapper
+>>>>>>> Stashed changes
 	curl -L https://get.rvm.io | bash -s stable --ruby
 	chsh --shell /bin/zsh
 	zsh
