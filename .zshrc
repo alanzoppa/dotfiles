@@ -43,7 +43,7 @@ bindkey '^x^e' edit-command-line
 
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
-plugins=(git battery debian django rails python rvm virtualenvwrapper)
+plugins=(git battery debian django rails python rvm)
 export ZSH_THEME='alantheme'
 
 source $ZSH/oh-my-zsh.sh
