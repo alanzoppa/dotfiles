@@ -1,16 +1,4 @@
-#alias fc="cd /home/alan/dev/foodchannel/src/src-foodchannel/foodchannel/ && source /home/alan/dev/foodchannel/bin/activate"
-#alias av="cd /home/alan/dev/av/src/src-av/av/ && source /home/alan/dev/av/bin/activate"
-#alias cl="cd /home/alan/dev/clinton/src/src-clinton/clinton/ && source /home/alan/dev/clinton/bin/activate"
-#alias au="cd /home/alan/dev/auto/src/src-auto/auto/ && source /home/alan/dev/auto/bin/activate"
-#alias mg="cd /home/alan/dev/mg/src/src-mg/mg/ && source /home/alan/dev/mg/bin/activate"
-#alias pr="cd /home/alan/dev/alan/src/portfolio/ && source /home/alan/dev/alan/bin/activate"
-#alias nr="cd /home/alan/dev/noter/src/src-noter/noter && source /home/alan/dev/noter/bin/activate"
-
 alias v="cd /home/alan/dev/$1/src/src-$1/$1 && source /home/alan/dev/$1/bin/activate"
-
-#export REALLY_GEM_UPDATE_SYSTEM=true
-
-#. $HOME/.django_bash_completion
 
 GPG_TTY=`tty` 
 export GPG_TTY 
@@ -26,3 +14,9 @@ vv () {
 compdef '_files -W "$SRC_DIRECTORY"' vv
 
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+function prompt_char {
+    echo 'ॐ '
+}
+
+
