@@ -17,6 +17,7 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 function prompt_char {
     echo 'ॐ '
+    #echo 'ಠ_ಠ'
 }
 
 
