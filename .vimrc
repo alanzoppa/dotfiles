@@ -25,6 +25,7 @@ map <Leader>oo :color zenburn<CR>
 
 vnoremap < <gv
 vnoremap > >gv
+vnoremap p pgvy
 
 call pathogen#infect()
 call pathogen#helptags() 
@@ -75,7 +76,7 @@ let g:ctrlp_custom_ignore = {
 set autoindent
 set backspace=indent,eol,start
 set completeopt=menu
-
+set colorcolumn=81
 set dictionary=/usr/share/dict/words
 
 set expandtab
