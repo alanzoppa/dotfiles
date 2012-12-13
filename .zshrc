@@ -21,10 +21,10 @@ export TERM='xterm-256color'
 autoload -U compinit && compinit
 
 
-__git_files () { 
-    _wanted files expl 'local files' _files     
-}
-source ~/.git-completion.sh
+#__git_files () { 
+    #_wanted files expl 'local files' _files     
+#}
+#source ~/.git-completion.sh
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
