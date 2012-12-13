@@ -24,10 +24,11 @@ standardize_rvm:
 	rvm use --default ruby-1.9.3-p327
 
 update:
-	git submodule update
 	make standardize_rvm
 	python bin/build_links.py
 	sh .oh-my-zsh/tools/upgrade.sh
+	git submodule update
+	git submodule foreach git reset --hard && git checkout master && git pull
 
 setup_vim:
 	cd ~/tmp && hg clone https://vim.googlecode.com/hg/ vim
