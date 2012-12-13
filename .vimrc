@@ -87,7 +87,6 @@ set nocompatible
 set ruler
 set showcmd
 set showmatch
-set smartindent
 set sw=4
 set tabpagemax=30
 set ts=4
