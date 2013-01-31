@@ -1,3 +1,4 @@
 --type-set=coffee=.coffee
 --type-set=js=.js
 --type-set=cuke=.feature
+--type-set=sass=.scss,.sass

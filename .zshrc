@@ -14,7 +14,9 @@ function rvm_info_for_prompt {
   fi
 }
 
-
+function tea {
+    sleep $1 | pv -t -N "Tea steeping for" && notify-send "Tea is ready"
+}
 
 export TERM='xterm-256color'
 
