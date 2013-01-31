@@ -15,7 +15,7 @@ function rvm_info_for_prompt {
 }
 
 function say {
-  echo $1 | festival --tts
+  echo $@ | festival --tts
 }
 
 
