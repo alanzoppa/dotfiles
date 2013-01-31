@@ -18,36 +18,19 @@ function tea {
     sleep $1 | pv -t -N "Tea steeping for" && notify-send "Tea is ready"
 }
 
+function say { echo $@ | festival --tts } 
+
 export TERM='xterm-256color'
 
-autoload -U compinit && compinit
-
-
-#__git_files () { 
-    #_wanted files expl 'local files' _files     
-#}
-#source ~/.git-completion.sh
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-
-alias lt='ls -t'
-alias lta='ls -ta'
-
-setopt auto_cd
-setopt auto_pushd
-
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^x^e' edit-command-line
+autoload -U compinit && compinit 
 
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
 plugins=(git battery debian django rails python rvm)
 export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
+export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
+
 
 source $ZSH/oh-my-zsh.sh
 
