@@ -14,6 +14,10 @@ function rvm_info_for_prompt {
   fi
 }
 
+function say {
+  echo $1 | festival --tts
+}
+
 
 
 export TERM='xterm-256color'
@@ -46,6 +50,8 @@ export ZSH_CUSTOM=$HOME/.zsh_custom
 plugins=(git battery debian django rails python rvm)
 export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
+export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
+
 
 source $ZSH/oh-my-zsh.sh
 
