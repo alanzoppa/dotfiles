@@ -15,14 +15,30 @@ function rvm_info_for_prompt {
 }
 
 function tea {
-    sleep $1 | pv -t -N "Tea steeping for" && notify-send "Tea is ready"
+    sleep $1 | pv -t -N "Tea steeping for" && say "Tea is ready" && zenity --info --text="Tea is ready"
 }
 
 function say { echo $@ | festival --tts } 
 
 export TERM='xterm-256color'
+autoload -U compinit && compinit
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+alias lt='ls -t'
+alias lta='ls -ta'
+
+setopt auto_cd
+setopt auto_pushd
+
+
 
 autoload -U compinit && compinit 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
