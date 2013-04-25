@@ -2,11 +2,11 @@ setup:
 	git submodule init
 	git submodule update
 	python bin/build_links.py
-	sudo apt-get install -y tmux libtool ncurses-dev libreadline-ruby libyaml-dev exuberant-ctags mercurial
+	sudo apt-get install -y tmux libtool ncurses-dev libreadline-ruby libyaml-dev exuberant-ctags mercurial libreadline6-dev zlib1g-dev libssl-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libgdbm-dev automake libffi-dev
 	curl -L https://get.rvm.io | bash -s stable --ruby
 	chsh --shell /usr/bin/zsh
 	zsh
-	mkdir $HOME/tmp
+	mkdir /home/alan/tmp
 	rvm pkg install libyaml
 	rvm pkg install readline
 	rvm pkg install zlib --verify-downloads 1
