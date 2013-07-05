@@ -47,8 +47,13 @@ export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
 
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
+
+. /usr/local/bin/z
 
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
