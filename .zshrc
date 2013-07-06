@@ -46,6 +46,9 @@ plugins=(git battery debian django rails python rvm)
 export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
+function ssh-copy-id {
+    cat ~/.ssh/id_rsa.pub | ssh $1 "cat >> ~/.ssh/authorized_keys"
+}
 
 
 source $ZSH/oh-my-zsh.sh
