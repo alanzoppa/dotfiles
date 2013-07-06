@@ -20,8 +20,10 @@ map <F12> :call EndWordComplete()<CR>
 map <F6> :setfiletype html<CR>
 map <F7> :call Rebuild_tags()<CR><CR>
 map <Leader>a ggVG
-map <Leader>tt :hi Normal ctermbg=none<CR>
-map <Leader>oo :color zenburn<CR>
+"map <Leader>tt :hi Normal ctermbg=none<CR>
+"map <Leader>oo :color zenburn<CR>
+map <Leader>l :tabn<CR>
+map <Leader>j :tabp<CR>
 
 vnoremap < <gv
 vnoremap > >gv
@@ -151,6 +153,7 @@ set background=dark
 set term=screen-256color
 let g:zenburn_high_Contrast=1
 color zenburn
+hi Normal ctermbg=none
 
 let html_use_css = 1
 let html_no_pre = 1

@@ -50,8 +50,13 @@ function ssh-copy-id {
     cat ~/.ssh/id_rsa.pub | ssh $1 "cat >> ~/.ssh/authorized_keys"
 }
 
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
+
+. /usr/local/bin/z
 
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
