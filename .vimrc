@@ -153,7 +153,7 @@ set background=dark
 set term=screen-256color
 let g:zenburn_high_Contrast=1
 color zenburn
-hi Normal ctermbg=none
+set guifont=Inconsolata:h14
 
 let html_use_css = 1
 let html_no_pre = 1
