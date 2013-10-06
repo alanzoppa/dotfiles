@@ -18,8 +18,6 @@ function tea {
     sleep $1 | pv -t -N "Tea steeping for" && say "Tea is ready" && zenity --info --text="Tea is ready"
 }
 
-function say { echo $@ | festival --tts } 
-
 export TERM='xterm-256color'
 autoload -U compinit && compinit
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
