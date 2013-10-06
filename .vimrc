@@ -95,6 +95,7 @@ set wildmenu
 set wildmode=longest,list,full
 set ignorecase
 set smartcase
+set number
 set relativenumber
 
 syn on
