@@ -20,8 +20,8 @@ map <F12> :call EndWordComplete()<CR>
 map <F6> :setfiletype html<CR>
 map <F7> :call Rebuild_tags()<CR><CR>
 map <Leader>a ggVG
-"map <Leader>tt :hi Normal ctermbg=none<CR>
-"map <Leader>oo :color zenburn<CR>
+map <Leader>tt :hi Normal ctermbg=none<CR>
+map <Leader>oo :color zenburn<CR>
 map <Leader>l :tabn<CR>
 map <Leader>j :tabp<CR>
 
@@ -61,13 +61,11 @@ set wildignore+=*/cnuapp/tmp/*,*/cnuapp/tools/*,*/cnuapp/typeroot/*,*/cnuapp/var
 set wildignore+=*/cnuapp/vendor/*
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-let g:ctrlp_max_files =0
-let g:ctrlp_max_depth =1000
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 1000
 let g:ctrlp_max_height = 50
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_clear_cache_on_exit = 0 
-
-let g:CommandTMaxFiles=50000
 let g:ctrlp_open_multiple_files = 't'
 
 let g:ctrlp_custom_ignore = {
@@ -97,6 +95,8 @@ set wildmenu
 set wildmode=longest,list,full
 set ignorecase
 set smartcase
+set number
+set relativenumber
 
 syn on
 
@@ -157,3 +157,4 @@ set guifont=Inconsolata:h14
 
 let html_use_css = 1
 let html_no_pre = 1
+hi Normal ctermbg=none
