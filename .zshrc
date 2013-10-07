@@ -18,7 +18,7 @@ function tea {
     sleep $1 | pv -t -N "Tea steeping for" && say "Tea is ready" && zenity --info --text="Tea is ready"
 }
 
-function say { echo $@ | festival --tts } 
+#function say { echo $@ | festival --tts } 
 
 export TERM='xterm-256color'
 autoload -U compinit && compinit
@@ -26,6 +26,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
+PATH="/usr/local/share/npm/bin:$PATH"
 alias lt='ls -t'
 alias lta='ls -ta'
 

@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/alan/dev/proforma'
 let g:netrw_dirhist_2='/etc/X11/Xsession.d'
 let g:netrw_dirhist_3='/home/alan/dev/nancy/lib/fields'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/alan/local_dev/vinz/lib/vinz'
 let g:netrw_dirhist_6='/home/alan/.zsh_custom'
 let g:netrw_dirhist_7='/home/cnuapp/.zsh_custom'
 let g:netrw_dirhist_8='/home/alan/.dotfiles'
+let g:netrw_dirhist_9='/Users/alan/.dotfiles/.git/modules'
