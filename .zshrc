@@ -38,7 +38,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
-
+git config --global alias.tree "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
 plugins=(git battery debian django rails python rvm)
@@ -60,3 +60,6 @@ source $ZSH/oh-my-zsh.sh
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
