@@ -1,0 +1,39 @@
+{
+  "name": "symbols-view",
+  "version": "0.41.0",
+  "main": "./lib/main",
+  "description": "Jump to a function/method in the current editor with `cmd-r`.",
+  "license": "MIT",
+  "activationEvents": {
+    "symbols-view:toggle-file-symbols": ".editor",
+    "symbols-view:toggle-project-symbols": null,
+    "symbols-view:go-to-declaration": ".editor"
+  },
+  "dependencies": {
+    "ctags": "~0.10.0",
+    "fs-plus": "2.x",
+    "humanize-plus": "1.4.2",
+    "pathwatcher": "0.16.0",
+    "q": "~1.0.0",
+    "temp": "~0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/symbols-view"
+  },
+  "engines": {
+    "atom": "*"
+  },
+  "readme": "# Symbols View package\n\nDisplay the list of functions/methods in the editor via `cmd-r` in Atom.\n\nIf your project has a `tags`/`TAGS` file at the root then following are\nsupported:\n\n  * `cmd-shift-r` to view all function/methods in the project\n\n  * `ctrl-alt-down` to jump to the declaration of the method/function under\n    the cursor\n\nThis package uses [ctags](http://ctags.sourceforge.net).\n\n![](https://f.cloud.github.com/assets/671378/2241860/30ef0b2e-9ce8-11e3-86e2-2c17c0885fa4.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/atom/symbols-view/issues"
+  },
+  "homepage": "https://github.com/atom/symbols-view",
+  "_id": "symbols-view@0.41.0",
+  "dist": {
+    "shasum": "f91b36dbb550673e8f092246408aa8f81349548c"
+  },
+  "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-11423-48889-f381p1/package.tgz",
+  "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-11423-48889-f381p1/package.tgz"
+}
