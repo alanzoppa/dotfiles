@@ -20,5 +20,4 @@
   ]
   'disabledPackages': [
     'metrics'
-    'vim-mode'
   ]
