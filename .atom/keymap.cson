@@ -22,3 +22,4 @@
   'ctrl-c': 'core:cancel'
 '.vim-mode.command-mode:not(.mini)':
   'ctrl-f': 'core:page-down'
+  '/': 'find-and-replace:show'
