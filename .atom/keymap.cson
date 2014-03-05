@@ -17,9 +17,11 @@
 #   'ctrl-p': 'core:move-down'
 #
 '.editor':
-  'ctrl-n': 'autocomplete:attach'
+  'ctrl-n': 'autocomplete:toggle'
+
 '.autocomplete .editor':
   'ctrl-c': 'core:cancel'
+
 '.vim-mode.command-mode:not(.mini)':
   'ctrl-f': 'core:page-down'
   '/': 'find-and-replace:show'
