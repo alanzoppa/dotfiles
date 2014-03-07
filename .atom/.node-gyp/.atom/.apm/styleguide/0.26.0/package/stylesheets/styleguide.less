@@ -1,0 +1,113 @@
+@import "ui-variables";
+
+.styleguide {
+  position: relative;
+  overflow: auto;
+
+  section.collapsed {
+    opacity: .6;
+    padding-top: @component-padding;
+    padding-bottom: @component-padding;
+    &:hover { opacity: 1; }
+
+    > .section-heading {
+      display: block;
+      margin: 0;
+    }
+
+    > * {
+      display: none
+    }
+  }
+
+  section .section-heading {
+    cursor: pointer;
+    font-weight: bold;
+    color: @text-color-highlight;
+
+    &:hover {
+      color: @text-color-highlight;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  section[data-name="styleguide"] {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .overlay, .popover-list {
+    position: relative;
+  }
+
+  .select-list, .popover-list {
+    .editor.mini { height: 27px; }
+  }
+
+  .tooltip {
+    position: relative;
+    opacity: 1;
+    display: inline-block;
+    margin-right: @component-padding;
+  }
+
+  .btn-collapse-all {
+    position: absolute;
+    right: @component-padding;
+    top: @component-padding;
+    z-index: 100;
+  }
+}
+
+.example {
+  display: -webkit-flex;
+  border: 1px solid @tool-panel-border-color;
+  border-radius: @component-border-radius;
+  margin: @component-padding 0;
+
+  > * { width: 50%; }
+
+  .example-rendered {
+    position: relative;
+    padding: @component-padding;
+    background: lighten(@tool-panel-background-color, 2%);
+    border-radius: @component-border-radius 0 0 @component-border-radius;
+
+    .ui-site-1, .ui-site-2, .ui-site-3, .ui-site-4, .ui-site-5 {
+      height: 10px;
+      width: 100px;
+    }
+  }
+
+  .example-code {
+    position: relative;
+    background-color: @inset-panel-background-color;
+
+    &.show-example-space-pen {
+      .example-space-pen { display: block; }
+    }
+    &.show-example-html {
+      .example-html { display: block; }
+    }
+
+    .btn-group{
+      position: absolute;
+      top: @component-padding;
+      right: @component-padding;
+      z-index: 10;
+      .btn.selected { background-color: #222; }
+    }
+
+    .editor {
+      background-color: transparent;
+      display: none;
+      border: none;
+      -webkit-user-select: text;
+      padding: @component-padding;
+      border-radius: 0 @component-border-radius @component-border-radius 0;
+      > div { line-height: 1.4; }
+    }
+  }
+
+}

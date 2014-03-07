@@ -1,0 +1,31 @@
+{
+  "name": "styleguide",
+  "main": "./lib/styleguide",
+  "version": "0.26.0",
+  "description": "A visual styleguide of the Atom's UI components.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/styleguide"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "js-beautify": "~1.4.x",
+    "coffee-script": "~1.7.0",
+    "underscore-plus": "1.x"
+  },
+  "engines": {
+    "atom": "*"
+  },
+  "readme": "# Styleguide package\n\nThe styleguide will show you all the UI components used in Atom. It is useful\nas a reference when developing themes and packages.\n\n* `cmd-ctrl-shift-g` opens it in a new tab\n* You can click on the section headings to expand/collapse them.\n\n![Demo](https://f.cloud.github.com/assets/69169/1045837/620444d4-102c-11e3-9cac-8d766a8d62b0.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/atom/styleguide/issues"
+  },
+  "homepage": "https://github.com/atom/styleguide",
+  "_id": "styleguide@0.26.0",
+  "dist": {
+    "shasum": "a52e78452151dab549e26da2ef46c1021762a879"
+  },
+  "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-11423-48891-kwdmy4/package.tgz",
+  "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-11423-48891-kwdmy4/package.tgz"
+}

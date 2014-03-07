@@ -1,0 +1,37 @@
+{
+  "name": "jshint",
+  "version": "0.2.5",
+  "description": "Validate JavaScript with JSHint while typing. The best one. ✌⊂(✰‿✰)つ✌",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/atom-jshint"
+  },
+  "private": true,
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "atom": ">=0.60.0"
+  },
+  "dependencies": {
+    "jshint": "^2.4.4",
+    "lodash": "^2.4.1",
+    "emissary": "^1.0.0",
+    "shelljs": "^0.2.6"
+  },
+  "readme": "# JSHint\n\n[Atom package](https://atom.io/packages/jshint)\n\n> Validate JavaScript with [JSHint](http://jshint.com)\n\n![](https://f.cloud.github.com/assets/170270/2307241/f0460f66-a2a3-11e3-9382-e8d27ceb0499.png)\n\n\n## Install\n\n```bash\n$ apm install jshint\n```\n\nOr Settings ➔ Packages ➔ Search for `jshint` *(install `Jshint`, not `Atom Jshint`)*\n\n\n## Features\n\n- Validates in realtime.\n- Line and line number turns red on error.\n- Hover over the line number to see the errors.\n- First error is displayed in the statusbar.\n- Reads your `.jshintrc` config and `jshintConfig` in package.json using the same logic as JSHint.\n- Option to only validate on save.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "readmeFilename": "readme.md",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/atom-jshint/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/atom-jshint",
+  "_id": "jshint@0.2.5",
+  "dist": {
+    "shasum": "b888d830c2d015d59008b828dd6f141367850254"
+  },
+  "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-11423-49729-1imezdt/package.tgz",
+  "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-11423-49729-1imezdt/package.tgz"
+}

@@ -1,13 +1,13 @@
 'exception-reporting':
   'userId': '372bd8d8-d27b-3c8f-ede3-453683598a1d'
 'release-notes':
-  'viewedVersion': '0.60.0'
+  'viewedVersion': '0.65.0'
 'welcome':
   'showOnStartup': false
 'metrics':
   'userId': '8ac7f967de05fc4cc943103e1b2dd15f6c891481'
 'editor':
-  'fontSize': 16
+  'fontSize': 17
 'core':
   'themes': [
     'atom-dark-ui'
@@ -20,5 +20,4 @@
   ]
   'disabledPackages': [
     'metrics'
-    'vim-mode'
   ]
