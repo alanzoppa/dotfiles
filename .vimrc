@@ -60,6 +60,7 @@ set wildignore+=*/cnuapp/result.GB.pass/*,*/cnuapp/script/*,*/cnuapp/src/*
 set wildignore+=*/cnuapp/tmp/*,*/cnuapp/tools/*,*/cnuapp/typeroot/*,*/cnuapp/var/*
 set wildignore+=*/cnuapp/vendor/*
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*node_modules*
 
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 1000

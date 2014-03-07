@@ -63,3 +63,6 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH=${PATH}:/Users/alan/android/sdk/tools:/Users/alan/android/sdk/platform-tools
+export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+export ANT_HOME=/usr/local/Cellar/ant/1.9.2/bin/ant
