@@ -1,10 +1,11 @@
 {
   "name": "sort-lines",
   "main": "./lib/sort-lines",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Sorts your lines. Never gets tired.",
   "activationEvents": [
-    "sort-lines:sort"
+    "sort-lines:sort",
+    "sort-lines:reverse-sort"
   ],
   "repository": {
     "type": "git",
@@ -21,10 +22,10 @@
     "url": "https://github.com/atom/sort-lines/issues"
   },
   "homepage": "https://github.com/atom/sort-lines",
-  "_id": "sort-lines@0.2.0",
+  "_id": "sort-lines@0.3.0",
   "dist": {
-    "shasum": "57cc5d8b1064dec6b2e9b2468b8d8720f31b7e88"
+    "shasum": "a01ab90aa277f4c67393cab89fb3fe348c8e110d"
   },
-  "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114127-30752-10wvv4e/package.tgz",
-  "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114127-30752-10wvv4e/package.tgz"
+  "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114219-30805-q0a0f7/package.tgz",
+  "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114219-30805-q0a0f7/package.tgz"
 }
