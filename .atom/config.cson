@@ -1,11 +1,7 @@
 'exception-reporting':
   'userId': '372bd8d8-d27b-3c8f-ede3-453683598a1d'
 'release-notes':
-<<<<<<< HEAD
   'viewedVersion': '0.71.0'
-=======
-  'viewedVersion': '0.69.0'
->>>>>>> 2b0ba5760d2d050821ae4718346e6cdb55065e66
 'welcome':
   'showOnStartup': false
 'metrics':
