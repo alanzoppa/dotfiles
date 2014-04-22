@@ -23,8 +23,14 @@
   "homepage": "https://github.com/atom/vim-mode",
   "_id": "vim-mode@0.8.1",
   "dist": {
+<<<<<<< HEAD
     "shasum": "9edd2b1b6ab5c62b6626b4990c8c68add702ca9d"
   },
   "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114217-6107-17p5rsv/package.tgz",
   "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114217-6107-17p5rsv/package.tgz"
+=======
+    "shasum": "06148bf2de16ca1ba9d0734767583186e4e4ac0a"
+  },
+  "_from": "/Users/alan/.atom/.node-gyp/.atom/.apm/vim-mode/0.8.0/package.tgz"
+>>>>>>> 2b0ba5760d2d050821ae4718346e6cdb55065e66
 }
