@@ -2,3 +2,4 @@
 .vim/doc/tags
 */doc/tags
 .atom/storage/*
+.atom/storage/.node-gyp/*
