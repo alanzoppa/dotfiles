@@ -57,8 +57,6 @@ bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
 
-. /usr/local/bin/z
-
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
 fi
@@ -71,4 +69,3 @@ export ANT_HOME=/usr/local/Cellar/ant/1.9.2/bin/ant
 export FIX_VPN_POW=yes
 export FIX_VPN_MINIRAISER=yes
 export PGHOST=localhost
-source /usr/local/opt/chruby/share/chruby/auto.sh
