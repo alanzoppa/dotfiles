@@ -1,0 +1,27 @@
+{
+  "name": "cucumber",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Cucumber support for atom. Converted from https://github.com/cucumber/cucumber-tmbundle",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edda/cucumber-atom"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readme": "# cucumber package\n\nCucumber support for atom. Converted from https://github.com/cucumber/cucumber-tmbundle\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/edda/cucumber-atom/issues"
+  },
+  "homepage": "https://github.com/edda/cucumber-atom",
+  "_id": "cucumber@0.4.0",
+  "dist": {
+    "shasum": "43dc3a5b8288ee581e7111e93c632c895a6ebc4a"
+  },
+  "_resolved": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114423-20942-1r180r6/package.tgz",
+  "_from": "/var/folders/xk/72qb37bj3tgg3r23bqx9tl140000gq/T/d-114423-20942-1r180r6/package.tgz"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "cucumber-step",
+  "main": "./lib/cucumber-step",
+  "version": "0.1.2",
+  "description": "Jump to step from feature",
+  "activationEvents": [
+    "cucumber-step:jump-to-step"
+  ],
+  "repository": "https://github.com/gaslight/atom-cucumber-step",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {}
+}

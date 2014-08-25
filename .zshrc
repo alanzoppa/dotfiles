@@ -25,6 +25,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 PATH="/usr/local/share/npm/bin:$PATH"
+PATH="~/local_dev/8b/bin:$PATH"
+
 alias lt='ls -t'
 alias lta='ls -ta'
 
@@ -66,3 +68,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH=${PATH}:/Users/alan/android/sdk/tools:/Users/alan/android/sdk/platform-tools
 export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
 export ANT_HOME=/usr/local/Cellar/ant/1.9.2/bin/ant
+export FIX_VPN_POW=yes
+export FIX_VPN_MINIRAISER=yes
+export PGHOST=localhost
+source /usr/local/opt/chruby/share/chruby/auto.sh

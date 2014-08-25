@@ -1,0 +1,28 @@
+{
+  "name": "nrepl",
+  "main": "./lib/nrepl",
+  "version": "0.0.5",
+  "description": "An nrepl client for clojure development in atom",
+  "activationEvents": [
+    "nrepl:eval"
+  ],
+  "homepage": "https://github.com/maxbrunsfeld/atom-nrepl",
+  "repository": "https://github.com/maxbrunsfeld/atom-nrepl",
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "http://github.com/maxbrunsfeld/atom-nrepl/raw/master/LICENSE.md"
+    }
+  ],
+  "engines": {
+    "atom": ">0.39.0"
+  },
+  "dependencies": {
+    "nrepl.js": "0.0.1",
+    "underscore": "1.5.x"
+  },
+  "devDependencies": {
+    "temp": "*",
+    "pathwatcher": "*"
+  }
+}

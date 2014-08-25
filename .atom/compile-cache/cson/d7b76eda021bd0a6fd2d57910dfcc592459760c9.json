@@ -1,0 +1,1 @@
+{"context-menu":{".overlayer":{"Eval current expression":"nrepl:eval"}},"menu":[{"label":"Packages","submenu":[{"label":"nrepl","submenu":[{"label":"Eval","command":"nrepl:eval"}]}]}]}
