@@ -42,10 +42,8 @@ function collapse_pwd {
     echo $(pwd | sed -e "s,^$HOME,~,")
 }
 
-if which rvm-prompt &> /dev/null; then
-  PROMPT='%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[cyan]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%} %{$fg_bold[cyan]%} ${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)%{$reset_color%} %{$fg_bold[red]%}$(rvm_char)$(~/.rvm/bin/rvm-prompt)%{$reset_color%} 
+PROMPT='%{$fg_bold[blue]%}%n%{$reset_color%}%{$fg_bold[cyan]%}@%{$reset_color%}%{$fg_bold[blue]%}%m%{$reset_color%} %{$fg_bold[cyan]%} ${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)%{$reset_color%} %{$fg_bold[red]%}$(rvm_char) $(rbenv_prompt_info)%{$reset_color%} 
 $(virtualenv_info)%{$fg[white]%}$(prompt_char)%{$reset_color%}%{$fg_bold[white]%}$(point_char)%{$reset_color%} '
-fi
 
 
 ZSH_THEME_GIT_PROMPT_PREFIX="  %{$fg_bold[magenta]%}⊸ "
