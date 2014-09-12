@@ -1,2 +1,2 @@
-source /usr/local/opt/chruby/share/chruby/auto.sh
-export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+#source /usr/local/opt/chruby/share/chruby/auto.sh
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.6`

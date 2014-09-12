@@ -8,7 +8,6 @@
   'userId': '8ac7f967de05fc4cc943103e1b2dd15f6c891481'
 'editor':
   'fontSize': 14
-  'showIndentGuide': true
 'core':
   'themes': [
     'atom-dark-ui'
