@@ -17,7 +17,7 @@
 #   'ctrl-p': 'core:move-down'
 #
 '.editor':
-  'ctrl-n': 'autocomplete:toggle'
+  'ctrl-;': 'autocomplete:toggle'
 
 '.vim-mode.command-mode:not(.mini)':
   'ctrl-f': 'core:page-down'
