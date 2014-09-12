@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/alan/local_dev/rest-client'
-let g:netrw_dirhist_2='/Users/alan/local_dev/cnuapp_client/lib/cnuapp'
-let g:netrw_dirhist_3='/Users/alan/Dropbox/upvoter/data'
