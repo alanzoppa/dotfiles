@@ -3,3 +3,90 @@
 */doc/tags
 .atom/storage/*
 .atom/storage/.node-gyp/*
+.atom/.node-gyp/*
+.atom/compile-cache/*
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   .albedo_zshrc
+	modified:   .atom/.node-gyp/.atom/.apm/async/.cache.json
+	modified:   .atom/.node-gyp/.atom/.apm/bindings/.cache.json
+	modified:   .atom/.node-gyp/.atom/.apm/inherits/.cache.json
+	modified:   .atom/.node-gyp/.atom/.apm/nan/.cache.json
+	modified:   .atom/.node-gyp/.atom/.apm/readable-stream/.cache.json
+	modified:   .atom/.node-gyp/.atom/.apm/string_decoder/.cache.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/1aef21cf484e2b368d95601d90ca1f55b8edd786/index.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/2f19436a21af47d280e4e19c4537b0f3dc9b659c/git-diff.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/4839063c8657373421034b8ebed5c7a4b3d71a69/markdown-preview.json
+	deleted:    .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/77aa6f981b197d87c79a8e195482357b4e4748db/feedback.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/8a34a7145dd79aa97820885897f605fd0febfb50/settings-view.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/b7aa72aa3b0a5d321df50227c25cd6413a5cde2e/status-bar.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/ca56010c77ce2f62ac1c1a4a69f5e03e7f035aea/index.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/d3c845515b1afc683fa0b924c5acadae09a919fd/timecop.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/ee9c1cd7cc0e23e2ffd00c4a3908be134d9c7bdf/find-and-replace.json
+	modified:   .atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/imports.json
+	modified:   .vim/.netrwhist
+	modified:   .vim/bundle/VimClojure (untracked content)
+	modified:   .vim/bundle/ragtag (untracked content)
+	modified:   .vim/bundle/vim-arpeggio (untracked content)
+	modified:   .vim/bundle/vim-expand-region (untracked content)
+	modified:   .zshrc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.atom/.node-gyp/.atom/.apm/asn1/
+	.atom/.node-gyp/.atom/.apm/assert-plus/
+	.atom/.node-gyp/.atom/.apm/async/0.9.0/
+	.atom/.node-gyp/.atom/.apm/aws-sign2/
+	.atom/.node-gyp/.atom/.apm/bindings/1.2.1/
+	.atom/.node-gyp/.atom/.apm/bl/
+	.atom/.node-gyp/.atom/.apm/boom/
+	.atom/.node-gyp/.atom/.apm/caseless/
+	.atom/.node-gyp/.atom/.apm/combined-stream/
+	.atom/.node-gyp/.atom/.apm/contextify/
+	.atom/.node-gyp/.atom/.apm/core-util-is/
+	.atom/.node-gyp/.atom/.apm/cryptiles/
+	.atom/.node-gyp/.atom/.apm/cssom/
+	.atom/.node-gyp/.atom/.apm/cssstyle/
+	.atom/.node-gyp/.atom/.apm/ctype/
+	.atom/.node-gyp/.atom/.apm/d3/
+	.atom/.node-gyp/.atom/.apm/delayed-stream/
+	.atom/.node-gyp/.atom/.apm/forever-agent/
+	.atom/.node-gyp/.atom/.apm/form-data/
+	.atom/.node-gyp/.atom/.apm/git-log/
+	.atom/.node-gyp/.atom/.apm/hawk/
+	.atom/.node-gyp/.atom/.apm/hoek/
+	.atom/.node-gyp/.atom/.apm/htmlparser/
+	.atom/.node-gyp/.atom/.apm/http-signature/
+	.atom/.node-gyp/.atom/.apm/isarray/
+	.atom/.node-gyp/.atom/.apm/jsdom/
+	.atom/.node-gyp/.atom/.apm/json-stringify-safe/
+	.atom/.node-gyp/.atom/.apm/mime-types/
+	.atom/.node-gyp/.atom/.apm/mime/
+	.atom/.node-gyp/.atom/.apm/nan/1.0.0/
+	.atom/.node-gyp/.atom/.apm/node-uuid/
+	.atom/.node-gyp/.atom/.apm/nwmatcher/
+	.atom/.node-gyp/.atom/.apm/oauth-sign/
+	.atom/.node-gyp/.atom/.apm/punycode/
+	.atom/.node-gyp/.atom/.apm/qs/
+	.atom/.node-gyp/.atom/.apm/readable-stream/1.0.31/
+	.atom/.node-gyp/.atom/.apm/request/
+	.atom/.node-gyp/.atom/.apm/sntp/
+	.atom/.node-gyp/.atom/.apm/string_decoder/0.10.31/
+	.atom/.node-gyp/.atom/.apm/stringstream/
+	.atom/.node-gyp/.atom/.apm/tough-cookie/
+	.atom/.node-gyp/.atom/.apm/tunnel-agent/
+	.atom/compile-cache/cson/1f4926325a2ac221ea38523f49d14f55158038f4.json
+	.atom/compile-cache/cson/f1579aa5e98d0ca5322fc6a1d19f620129eb6744.json
+	.atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/2858a99304ccde36e0afd59021057795566c1dda/
+	.atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/505678ed0f7b0ea7f3a6154642ea5414859be179/
+	.atom/compile-cache/less/62b7a669af25a948e0632eac5cb2bf860f9c0e6e/content/fe296b21869cf9f8eb7df4237833380fed7b1e76/
+	.atom/packages/git-log/
+
+no changes added to commit (use "git add" and/or "git commit -a")
