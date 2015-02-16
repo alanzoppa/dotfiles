@@ -10,6 +10,8 @@ setup:
 	gem install tmuxinator
 	bin/setup_anacron.sh
 	sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+
+upgrade_vim:
 	hg clone https://vim.googlecode.com/hg/ ~/vim
 	cd ~/vim/src
 	make
