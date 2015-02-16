@@ -10,6 +10,13 @@ setup:
 	gem install tmuxinator
 	bin/setup_anacron.sh
 	sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+	hg clone https://vim.googlecode.com/hg/ ~/vim
+	cd ~/vim/src
+	make
+	sudo make install
+	sudo rm /usr/bin/vim
+	sudo ln -s /usr/local/bin/vim /usr/bin/vim
+	rm -rf ~/vim
 
 update:
 	python bin/build_links.py
