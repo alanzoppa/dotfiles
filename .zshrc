@@ -47,7 +47,7 @@ bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh-syntax-highlighting.zsh
 
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
@@ -61,9 +61,15 @@ export FIX_VPN_POW=yes
 export FIX_VPN_MINIRAISER=yes
 export PGHOST=localhost
 
-eval "$(pyenv init -)" 
-eval "$(pyenv virtualenv-init -)" 
-eval "$(rbenv init -)"
+if [ -z "$(which pyenv)" ]; then
+    eval "$(pyenv init -)" 
+    eval "$(pyenv virtualenv-init -)" 
+fi
+
+if [ -z "$(which rbenv)" ]; then
+    eval "$(rbenv init -)"
+fi
+
 
 
 export PATH=/Users/alan/torch/install/bin:$PATH  # Added automatically by torch-dist
