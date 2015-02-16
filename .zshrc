@@ -47,7 +47,7 @@ bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.zsh-syntax-highlighting.zsh
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
