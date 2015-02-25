@@ -76,6 +76,3 @@ fi
 if [ -z "$(which rbenv)" ]; then
     eval "$(rbenv init -)"
 fi
-
-export PATH=/Users/alan/torch/install/bin:$PATH  # Added automatically by torch-dist
-export LD_LIBRARY_PATH=/Users/alan/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
