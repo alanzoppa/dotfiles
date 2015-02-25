@@ -16,6 +16,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 
 PATH="/usr/local/share/npm/bin:$PATH"
 PATH="~/local_dev/8b/bin:$PATH"
+PATH=$PATH:/usr/local/sbin
 
 alias lt='ls -t'
 alias lta='ls -ta'
@@ -59,6 +60,16 @@ export FIX_VPN_POW=yes
 export FIX_VPN_MINIRAISER=yes
 export PGHOST=localhost
 
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+export PATH=/usr/local/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+
 eval "$(pyenv init -)" 
-eval "$(pyenv virtualenv-init -)" 
 eval "$(rbenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+export PATH=/Users/alan/torch/install/bin:$PATH  # Added automatically by torch-dist
+export LD_LIBRARY_PATH=/Users/alan/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
