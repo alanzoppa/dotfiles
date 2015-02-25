@@ -48,13 +48,15 @@ bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
 
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
     source ~/.${HOSTNAME}_zshrc
 fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-export PATH=${PATH}:/Users/alan/android/sdk/tools:/Users/alan/android/sdk/platform-tools
+export PATH=/usr/local/bin:${PATH}:/Users/alan/android/sdk/tools:/Users/alan/android/sdk/platform-tools
 export ANT_HOME=/usr/local/Cellar/ant/1.9.2/bin/ant
 export FIX_VPN_POW=yes
 export FIX_VPN_MINIRAISER=yes
@@ -66,10 +68,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 
-eval "$(pyenv init -)" 
-eval "$(rbenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ -z "$(which pyenv)" ]; then
+    eval "$(pyenv init -)" 
+    eval "$(pyenv virtualenv-init -)" 
+fi
 
+if [ -z "$(which rbenv)" ]; then
+    eval "$(rbenv init -)"
+fi
 
 export PATH=/Users/alan/torch/install/bin:$PATH  # Added automatically by torch-dist
 export LD_LIBRARY_PATH=/Users/alan/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist

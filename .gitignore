@@ -3,4 +3,5 @@
 */doc/tags
 .atom/storage/*
 .atom/storage/.node-gyp/*
+.atom/.node-gyp/*
 .atom/compile-cache/*
