@@ -11,7 +11,6 @@ function tea {
 
 export TERM='xterm-256color'
 autoload -U compinit && compinit
-export PATH="$HOME/.rbenv/bin:$PATH"
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 PATH="/usr/local/share/npm/bin:$PATH"
@@ -33,7 +32,7 @@ bindkey '^x^e' edit-command-line
 git config --global alias.l "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
-plugins=(git battery debian django rails python rbenv)
+plugins=(git battery debian django rails python)
 export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
@@ -66,9 +65,7 @@ if [ -z "$(which pyenv)" ]; then
     eval "$(pyenv virtualenv-init -)" 
 fi
 
-if [ -z "$(which rbenv)" ]; then
-    eval "$(rbenv init -)"
-fi
+source /usr/local/share/chruby/chruby.sh
 
 
 
