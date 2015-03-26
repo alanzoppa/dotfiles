@@ -15,6 +15,7 @@ autoload -U compinit && compinit
 
 PATH="/usr/local/share/npm/bin:$PATH"
 PATH="~/local_dev/8b/bin:$PATH"
+PATH=$PATH:/usr/local/sbin
 
 alias lt='ls -t'
 alias lta='ls -ta'
@@ -59,6 +60,12 @@ export ANT_HOME=/usr/local/Cellar/ant/1.9.2/bin/ant
 export FIX_VPN_POW=yes
 export FIX_VPN_MINIRAISER=yes
 export PGHOST=localhost
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+export PATH=/usr/local/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 
 if [ -z "$(which pyenv)" ]; then
     eval "$(pyenv init -)" 
