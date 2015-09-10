@@ -61,16 +61,12 @@ export FIX_VPN_POW=yes
 export FIX_VPN_MINIRAISER=yes
 export PGHOST=localhost
 
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export PATH=/usr/local/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 
-if [ -z "$(which pyenv)" ]; then
-    eval "$(pyenv init -)" 
-    eval "$(pyenv virtualenv-init -)" 
-fi
+command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" 
 
 source /usr/local/share/chruby/chruby.sh
 
