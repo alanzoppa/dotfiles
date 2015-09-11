@@ -77,7 +77,7 @@ let g:ctrlp_custom_ignore = {
 set autoindent
 set backspace=indent,eol,start
 set completeopt=menu
-set colorcolumn=81
+set colorcolumn=80
 set dictionary=/usr/share/dict/words
 
 set expandtab

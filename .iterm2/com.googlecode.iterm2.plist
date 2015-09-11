@@ -90,12 +90,33 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSTableView Columns KeyBingingTable</key>
+	<array>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATCG
+		</data>
+		<string>198</string>
+		<data>
+		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
+		hAErATGG
+		</data>
+		<string>302</string>
+	</array>
+	<key>NSTableView Hidden Columns KeyBingingTable</key>
+	<array/>
+	<key>NSTableView Sort Ordering KeyBingingTable</key>
+	<array/>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>929 88 445 270 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>163 178 605 485 0 0 1440 878 </string>
+	<string>163 178 924 485 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 5 1439 873 0 0 1440 878 </string>
+	<string>0 26 1424 851 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>-587 984 2517 1331 -587 900 2560 1418 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>529 161 585 401 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_97AA0991-4D88-4C15-9267-1B252918D7B8</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -775,7 +796,7 @@
 			<key>Terminal Type</key>
 			<string>xterm</string>
 			<key>Transparency</key>
-			<real>0.099373616278171539</real>
+			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -866,9 +887,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-05-21T22:20:17Z</date>
-	<key>SUSkippedVersion</key>
-	<string>1.0.0.20140518</string>
+	<date>2015-04-28T19:31:07Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -916,6 +935,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20140421</string>
+	<string>2.0.0.20150412</string>
 </dict>
 </plist>
