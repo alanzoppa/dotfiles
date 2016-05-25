@@ -1,7 +1,7 @@
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
-export PATH=/Users/alan/torch/install/bin:$PATH  # Added automatically by torch-dist
-export LD_LIBRARY_PATH=/Users/alan/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
+LDFLAGS="-L$(brew --prefix openssl)/lib"
+CPPFLAGS="-I$(brew --prefix openssl)/include"
 
 chruby 2.1.3

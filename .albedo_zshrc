@@ -1,2 +1,11 @@
-source /usr/local/opt/chruby/share/chruby/auto.sh
-export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+
+#LDFLAGS="-L$(brew --prefix openssl)/lib"
+#CPPFLAGS="-I$(brew --prefix openssl)/include"
+#
+
+PATH="$HOME/.bazel/bin:$PATH"
+
+chruby 2.1.5
+export ANDROID_HOME=/usr/local/opt/android-sdk
