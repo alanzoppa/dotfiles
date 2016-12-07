@@ -7,5 +7,5 @@ source /usr/local/share/chruby/auto.sh
 
 PATH="$HOME/.bazel/bin:$PATH"
 
-chruby 2.1.5
+chruby 2.3.0
 export ANDROID_HOME=/usr/local/opt/android-sdk
