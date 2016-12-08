@@ -2,7 +2,6 @@ setup:
 	git submodule init
 	git submodule update
 	python bin/build_links.py
-	sudo apt-get install -y tmux libtool ncurses-dev libyaml-dev exuberant-ctags mercurial libreadline6-dev zlib1g-dev libssl-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf libgdbm-dev automake libffi-dev
 	chsh --shell /usr/bin/zsh
 	zsh
 	mkdir /home/alan/tmp
