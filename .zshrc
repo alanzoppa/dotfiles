@@ -19,7 +19,7 @@ PATH=$PATH:/usr/local/sbin
 
 alias lt='ls -t'
 alias lta='ls -ta'
-alias ack='ack-grep'
+#alias ack='ack-grep'
 
 setopt auto_cd
 setopt auto_pushd
