@@ -9,3 +9,6 @@ PATH="$HOME/.bazel/bin:$PATH"
 
 chruby 2.3.0
 export ANDROID_HOME=/usr/local/opt/android-sdk
+function prompt_char() {
+    echo '工作';
+}
