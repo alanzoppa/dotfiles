@@ -54,10 +54,10 @@
 	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule ".vim/bundle/handlebars"]
 	path = .vim/bundle/handlebars
-	url = git://github.com/nono/vim-handlebars.git
+	url = https://github.com/nono/vim-handlebars.git
 [submodule ".vim/bundle/badwolf"]
 	path = .vim/bundle/badwolf
-	url = git://github.com/sjl/badwolf.git
+	url = https://github.com/sjl/badwolf.git
 [submodule ".vim/bundle/VimClojure"]
 	path = .vim/bundle/VimClojure
 	url = https://github.com/vim-scripts/VimClojure.git
@@ -69,7 +69,7 @@
 	url = https://github.com/Raimondi/delimitMate.git
 [submodule ".vim/bundle/vim-expand-region"]
 	path = .vim/bundle/vim-expand-region
-	url = git://github.com/terryma/vim-expand-region.git
+	url = https://github.com/terryma/vim-expand-region.git
 [submodule "z"]
 	path = z
 	url = https://github.com/rupa/z.git
