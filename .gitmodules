@@ -91,3 +91,9 @@
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
+[submodule ".vim/plugin/elm-vim"]
+	path = .vim/plugin/elm-vim
+	url = https://github.com/ElmCast/elm-vim.git
+[submodule ".vim/plugin/ale"]
+	path = .vim/plugin/ale
+	url = https://github.com/w0rp/ale.git

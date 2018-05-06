@@ -2,7 +2,7 @@ setup:
 	git submodule init
 	git submodule update
 	python bin/build_links.py
-	chsh --shell /usr/bin/zsh
+	chsh -s /bin/zsh
 	zsh
 	mkdir /home/alan/tmp
 	sh .oh-my-zsh/tools/install.sh
