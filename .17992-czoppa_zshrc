@@ -1,13 +1,13 @@
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 #LDFLAGS="-L$(brew --prefix openssl)/lib"
 #CPPFLAGS="-I$(brew --prefix openssl)/include"
 #
 
-PATH="$HOME/.bazel/bin:$PATH"
+#PATH="$HOME/.bazel/bin:$PATH"
 
-chruby 2.4.1
+#chruby 2.4.1
 export ANDROID_HOME=/usr/local/opt/android-sdk
 function prompt_char() {
     echo '工作';

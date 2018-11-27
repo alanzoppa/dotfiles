@@ -48,8 +48,8 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-if [[ -a ~/.$(HOSTNAME)_zshrc ]]; then
-    source ~/.$(HOSTNAME)_zshrc
+if [[ -a ~/.$(hostname)_zshrc ]]; then
+    source ~/.$(hostname)_zshrc
 fi
 
 ### Added by the Heroku Toolbelt
