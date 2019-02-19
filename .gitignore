@@ -5,3 +5,4 @@
 .atom/storage/.node-gyp/*
 .atom/.node-gyp/*
 .atom/compile-cache/*
+*_zshrc
