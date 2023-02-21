@@ -1,7 +1,7 @@
 setup:
 	git submodule init
 	git submodule update
-	python bin/build_links.py
+	python3 bin/build_links.py
 	chsh -s /bin/zsh
 	zsh
 	mkdir /home/alan/tmp
