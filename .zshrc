@@ -48,28 +48,10 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
-
-### Added by the Heroku Toolbelt
-#export PATH="/usr/local/heroku/bin:$PATH"
-#export PATH=/usr/local/bin:${PATH}:/Users/alan/android/sdk/tools:/Users/alan/android/sdk/platform-tools
-#export ANT_HOME=/usr/local/Cellar/ant/1.9.2/bin/ant
-#export FIX_VPN_POW=yes
-#export FIX_VPN_MINIRAISER=yes
-#export PGHOST=localhost
-
-#export PATH=/usr/local/bin:$PATH
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-
-
-#command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)" 
-
-#source /usr/local/share/chruby/chruby.sh
-
-
-
-#export PATH=/Users/alan/torch/install/bin:$PATH  # Added automatically by torch-dist
-#export LD_LIBRARY_PATH=/Users/alan/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
