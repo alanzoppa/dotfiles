@@ -32,7 +32,7 @@ bindkey '^x^e' edit-command-line
 git config --global alias.l "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
-plugins=(git battery debian django rails python)
+plugins=(git pyenv nvm)
 export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
