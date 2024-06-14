@@ -5,4 +5,5 @@
 .atom/storage/.node-gyp/*
 .atom/.node-gyp/*
 .atom/compile-cache/*
+.vim/bundle/**/*
 *_zshrc

@@ -55,3 +55,13 @@ export NVM_DIR="$HOME/.nvm"
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+echo "foo"
+
+# added by travis gem
+[ ! -s /Users/alanzoppa/.travis/travis.sh ] || source /Users/alanzoppa/.travis/travis.sh
+eval "$(gh copilot alias -- zsh)"
