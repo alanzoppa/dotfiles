@@ -65,7 +65,6 @@ source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #eval "$(circleci completion zsh)"
 
 
-echo "~/.$(hostname)_zshrc"
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
