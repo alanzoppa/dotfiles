@@ -61,8 +61,8 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(gh copilot alias -- zsh)"
-eval "$(circleci completion zsh)"
+#eval "$(gh copilot alias -- zsh)"
+#eval "$(circleci completion zsh)"
 
 
 if [[ -a ~/.$(hostname)_zshrc ]]; then
