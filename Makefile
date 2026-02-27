@@ -37,22 +37,11 @@ setup:
 	elif command -v apt-get >/dev/null 2>&1; then \
 		echo "  Installing ack via apt (Debian/Ubuntu)"; \
 		sudo apt-get update && sudo apt-get install -y ack-grep; \
-	elif command -v yum >/dev/null 2>&1; then \
-		echo "  Installing ack via yum (RHEL/CentOS)"; \
-		sudo yum install -y ack; \
-	elif command -v dnf >/dev/null 2>&1; then \
-		echo "  Installing ack via dnf (Fedora)"; \
-		sudo dnf install -y ack; \
-	elif command -v pacman >/dev/null 2>&1; then \
-		echo "  Installing ack via pacman (Arch)"; \
-		sudo pacman -S --noconfirm ack; \
 	else \
 		echo "  Warning: Could not detect package manager"; \
 		echo "  Please install ack manually:"; \
 		echo "    - Debian/Ubuntu: sudo apt-get install ack-grep"; \
 		echo "    - macOS: brew install ack"; \
-		echo "    - Fedora: sudo dnf install ack"; \
-		echo "    - Arch: sudo pacman -S ack"; \
 	fi
 	@echo ""
 	@echo "Setting up exuberant-ctags..."
@@ -64,22 +53,11 @@ setup:
 	elif command -v apt-get >/dev/null 2>&1; then \
 		echo "  Installing ctags via apt (Debian/Ubuntu)"; \
 		sudo apt-get update && sudo apt-get install -y exuberant-ctags; \
-	elif command -v yum >/dev/null 2>&1; then \
-		echo "  Installing ctags via yum (RHEL/CentOS)"; \
-		sudo yum install -y ctags; \
-	elif command -v dnf >/dev/null 2>&1; then \
-		echo "  Installing ctags via dnf (Fedora)"; \
-		sudo dnf install -y ctags; \
-	elif command -v pacman >/dev/null 2>&1; then \
-		echo "  Installing ctags via pacman (Arch)"; \
-		sudo pacman -S --noconfirm ctags; \
 	else \
 		echo "  Warning: Could not detect package manager"; \
 		echo "  Please install exuberant-ctags manually:"; \
 		echo "    - Debian/Ubuntu: sudo apt-get install exuberant-ctags"; \
 		echo "    - macOS: brew install ctags"; \
-		echo "    - Fedora: sudo dnf install ctags"; \
-		echo "    - Arch: sudo pacman -S ctags"; \
 	fi
 	@echo ""
 	@echo "=== Setup Complete ==="
