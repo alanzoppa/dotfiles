@@ -36,7 +36,7 @@ call pathogen#helptags()
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'JK', '<Esc>')
 
-set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
+set wildignore+=*/media/**,*/*/home/*/media/**,*/*/home/*/Music/**,*/*.scssc
 "set wildignore+=*/.git/* " This line breaks fugitive.vim
 set wildignore+=*.pyc,*/*.scssc
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg

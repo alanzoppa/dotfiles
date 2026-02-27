@@ -1,0 +1,22 @@
+# <type>: <subject>
+# |       |
+# |       +-> Summary in present tense (50 chars max)
+# |
+# +----------> Type: feat, fix, docs, style, refactor, test, chore
+#
+# Use the imperative mood ("add feature", not "added feature")
+# Don't capitalize first letter
+# Don't put a period at the end
+#
+# Example:
+# feat: add zsh theme customization
+# fix: resolve symlink conflict in build script
+# docs: update installation instructions
+
+# Body (optional, wrap at 72 chars)
+# Explain WHAT and WHY (not HOW)
+# Reference issues/PRs if applicable
+
+# Footer (optional)
+# Breaking changes
+# Closes #123
