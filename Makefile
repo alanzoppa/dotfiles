@@ -57,19 +57,19 @@ setup:
 	@echo ""
 	@echo "=== Setup Complete ==="
 	@echo "Run 'chsh -s /bin/zsh' to change your shell"
-	@echo "Run 'zsh' or restart your terminal to apply changes""
+	@echo "Run 'zsh' or restart your terminal to apply changes"
 
 check:
 	@bash scripts/check_conflicts.sh
 
 update:
-	python bin/build_links.py
+	@echo "=== Updating Dotfiles ==="
+	python3 bin/build_links.py
+	@echo "Updating oh-my-zsh..."
 	sh .oh-my-zsh/tools/upgrade.sh
-	git submodule update
+	@echo "Updating submodules..."
+	git submodule update --init --recursive
 	git submodule foreach git reset --hard && git checkout master && git pull
+	@echo "=== Update Complete ==="
 
-update:
-	python bin/build_links.py
-	sh .oh-my-zsh/tools/upgrade.sh
-	git submodule update
-	git submodule foreach git reset --hard && git checkout master && git pull
+
