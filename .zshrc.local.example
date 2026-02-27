@@ -1,0 +1,32 @@
+# Local Zsh configuration - copy to .zshrc.local and customize
+# This file is ignored by git and will persist across updates
+
+# Editor
+export EDITOR=vim
+export VISUAL=vim
+
+# Custom aliases
+alias gs='git status'
+alias gl='git log --oneline --graph --all'
+alias gp='git push'
+alias gpl='git pull'
+
+# Work-specific settings
+# export WORK_API_KEY=your_key_here
+
+# Custom PATH additions
+# export PATH="$HOME/local/bin:$PATH"
+
+# Custom prompt tweaks
+# Uncomment to hide nvm version in prompt
+# export NVM_NO_SHOW=true
+
+# Custom theme settings
+# Uncomment and customize
+# export ZSH_THEME='robbyrussell'
+
+# Editor customizations
+# export IDE_PREFERENCES='dark'
+
+# Add any machine-specific overrides here
+# This is useful for different machines (work laptop vs personal)
