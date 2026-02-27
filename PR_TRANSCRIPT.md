@@ -72,14 +72,5 @@ User: `Test this locally in my home directory. Let me know how it goes, update y
 8. **scripts/check_conflicts.sh** - Conflict detection script
 9. **scripts/update_dotfiles.sh** - Update script for easy maintenance
 10. **bin/build_links.py** - Added git template setup and better logging
+11. **Makefile** - Added exuberant-ctags installation
 
----
-
-## PR Status
-
-- Branch: `improvements`
-- Tests: All manual tests passed
-- Notes: Ready for review and merge
-
-## Delimiter
----

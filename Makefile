@@ -55,6 +55,33 @@ setup:
 		echo "    - Arch: sudo pacman -S ack"; \
 	fi
 	@echo ""
+	@echo "Setting up exuberant-ctags..."
+	@if command -v ctags >/dev/null 2>&1; then \
+		echo "  ctags already installed"; \
+	elif command -v brew >/dev/null 2>&1; then \
+		echo "  Installing ctags via Homebrew"; \
+		brew install ctags; \
+	elif command -v apt-get >/dev/null 2>&1; then \
+		echo "  Installing ctags via apt (Debian/Ubuntu)"; \
+		sudo apt-get update && sudo apt-get install -y exuberant-ctags; \
+	elif command -v yum >/dev/null 2>&1; then \
+		echo "  Installing ctags via yum (RHEL/CentOS)"; \
+		sudo yum install -y ctags; \
+	elif command -v dnf >/dev/null 2>&1; then \
+		echo "  Installing ctags via dnf (Fedora)"; \
+		sudo dnf install -y ctags; \
+	elif command -v pacman >/dev/null 2>&1; then \
+		echo "  Installing ctags via pacman (Arch)"; \
+		sudo pacman -S --noconfirm ctags; \
+	else \
+		echo "  Warning: Could not detect package manager"; \
+		echo "  Please install exuberant-ctags manually:"; \
+		echo "    - Debian/Ubuntu: sudo apt-get install exuberant-ctags"; \
+		echo "    - macOS: brew install ctags"; \
+		echo "    - Fedora: sudo dnf install ctags"; \
+		echo "    - Arch: sudo pacman -S ctags"; \
+	fi
+	@echo ""
 	@echo "=== Setup Complete ==="
 	@echo "Run 'chsh -s /bin/zsh' to change your shell"
 	@echo "Run 'zsh' or restart your terminal to apply changes"
