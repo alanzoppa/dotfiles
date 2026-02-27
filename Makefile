@@ -43,22 +43,7 @@ setup:
 		echo "    - Debian/Ubuntu: sudo apt-get install ack-grep"; \
 		echo "    - macOS: brew install ack"; \
 	fi
-	@echo ""
-	@echo "Setting up exuberant-ctags..."
-	@if command -v ctags >/dev/null 2>&1; then \
-		echo "  ctags already installed"; \
-	elif command -v brew >/dev/null 2>&1; then \
-		echo "  Installing ctags via Homebrew"; \
-		brew install ctags; \
-	elif command -v apt-get >/dev/null 2>&1; then \
-		echo "  Installing ctags via apt (Debian/Ubuntu)"; \
-		sudo apt-get update && sudo apt-get install -y exuberant-ctags; \
-	else \
-		echo "  Warning: Could not detect package manager"; \
-		echo "  Please install exuberant-ctags manually:"; \
-		echo "    - Debian/Ubuntu: sudo apt-get install exuberant-ctags"; \
-		echo "    - macOS: brew install ctags"; \
-	fi
+	
 	@echo ""
 	@echo "=== Setup Complete ==="
 	@echo "Run 'chsh -s /bin/zsh' to change your shell"

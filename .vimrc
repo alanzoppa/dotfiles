@@ -2,7 +2,7 @@ let mapleader = ";"
 
 map <F2> :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeToggle<CR>
-map <S-F2> :TlistToggle<CR>
+
 map <F3> :tabp<CR>
 map <F4> :tabn<CR>
 imap <M-j> <Esc>
@@ -18,7 +18,7 @@ vmap <Leader>g y:Ack " *<CR>
 map <F11> :call DoWordComplete()<CR>
 map <F12> :call EndWordComplete()<CR>
 map <F6> :setfiletype html<CR>
-map <F7> :call Rebuild_tags()<CR><CR>
+
 map <Leader>a ggVG
 map <Leader>tt :hi Normal ctermbg=none<CR>
 map <Leader>oo :color zenburn<CR>
@@ -96,7 +96,7 @@ if has("gui_running")
 endif
 
 if has("gui_macvim")
-    let Tlist_Ctags_Cmd='/opt/local/bin/ctags'
+
     set gfn=Menlo\ Regular:h14
 endif
 
