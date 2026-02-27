@@ -59,3 +59,7 @@ yarn-error.log
 .vimrc.local
 .tmux.conf.local
 .gitconfig.local
+
+# Vim help tags
+.vim/doc/tags
+**/doc/tags
