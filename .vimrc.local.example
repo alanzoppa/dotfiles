@@ -1,0 +1,38 @@
+" Local Vim configuration - copy to .vimrc.local and customize
+" This file is ignored by git and will persist across updates
+
+" Leader key customization
+" let mapleader = ","
+
+" Custom plugins (will load after .vimrc)
+" call pathogen#infect('bundle/{}')
+
+" Custom color scheme
+" colorscheme gruvbox
+
+" Custom indentation
+" set tabstop=2
+" set shiftwidth=2
+" set expandtab
+
+" Custom window settings
+" set number
+" set relativenumber
+
+" Custom mappings
+" nnoremap <leader>w :w<CR>
+" nnoremap <leader>q :q<CR>
+
+" Project-specific settings
+" Uncomment for different projects
+" if isdirectory('./node_modules')
+"   set wildignore+=*/node_modules/*
+" endif
+
+" GUI-specific (MacVim, gVim)
+if has('gui_running')
+  set guifont=Hack\ Nerd\ Font\ Mono:h14
+  set guioptions-=T  " Remove toolbar
+  set guioptions-=r  " Remove right scrollbar
+  set guioptions-=L  " Remove left scrollbar
+endif

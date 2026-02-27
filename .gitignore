@@ -1,9 +1,61 @@
-.vim/.netrwhist
-.vim/doc/tags
-*/doc/tags
-.atom/storage/*
-.atom/storage/.node-gyp/*
-.atom/.node-gyp/*
-.atom/compile-cache/*
-.vim/bundle/**/*
-*_zshrc
+# User-specific files
+*.local
+*.bak
+*~
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*.swn
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.Pipfile.lock
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+.nyc_output/
+.coverage
+
+# Local customization files
+.zshrc.local
+.vimrc.local
+.tmux.conf.local
+.gitconfig.local

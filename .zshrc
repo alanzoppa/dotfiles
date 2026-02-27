@@ -59,11 +59,19 @@ bindkey '^[[1;9D' backward-word
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Load zsh syntax highlighting
+if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 #eval "$(gh copilot alias -- zsh)"
 #eval "$(circleci completion zsh)"
 
+
+# Source host-specific and local overrides
+if [[ -a ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
 
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
