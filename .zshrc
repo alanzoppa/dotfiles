@@ -34,16 +34,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-
-
-
-
-
 git config --global alias.l "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
 export ZSH=$HOME/.oh-my-zsh 
 export ZSH_CUSTOM=$HOME/.zsh_custom
-plugins=(git nvm)
+plugins=(git)
 export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
@@ -60,15 +54,6 @@ source $ZSH/oh-my-zsh.sh
 # Load zsh syntax highlighting
 if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-#eval "$(gh copilot alias -- zsh)"
-#eval "$(circleci completion zsh)"
-
-
-# Source host-specific and local overrides
-if [[ -a ~/.zshrc.local ]]; then
-    source ~/.zshrc.local
 fi
 
 if [[ -a ~/.$(hostname)_zshrc ]]; then
