@@ -42,7 +42,12 @@ export ZSH_THEME='alantheme'
 export DOTFILES_DIR=$HOME/.dotfiles
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/chrome/cache --disk-cache-size=419430400"
 function ssh-copy-id {
-    cat ~/.ssh/id_rsa.pub | ssh $1 "cat >> ~/.ssh/authorized_keys"
+    local key_file="${SSH_COPY_ID_KEY:-$(ls ~/.ssh/*.pub 2>/dev/null | head -1)}"
+    if [[ -z "$key_file" || ! -f "$key_file" ]]; then
+        echo "No public key found in ~/.ssh/" >&2
+        return 1
+    fi
+    cat "$key_file" | ssh $1 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 }
 
 bindkey -e
@@ -59,3 +64,6 @@ fi
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
+
+# OpenClaw Completion
+source "/home/alan/.openclaw/completions/openclaw.zsh"
