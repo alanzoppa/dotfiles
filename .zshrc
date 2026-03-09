@@ -61,8 +61,11 @@ if [[ -f ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
     source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# Source host-specific and local overrides
+if [[ -a ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
+
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
-
-# OpenClaw Completion (moved to .zshrc.local)
