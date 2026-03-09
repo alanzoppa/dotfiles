@@ -65,6 +65,4 @@ if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
 
-# OpenClaw Completion
-source "/home/alan/.openclaw/completions/openclaw.zsh"
-source "/Users/alanzoppa/.openclaw/completions/openclaw.zsh"
+# OpenClaw Completion (moved to .zshrc.local)
