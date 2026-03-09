@@ -67,3 +67,4 @@ fi
 
 # OpenClaw Completion
 source "/home/alan/.openclaw/completions/openclaw.zsh"
+source "/Users/alanzoppa/.openclaw/completions/openclaw.zsh"
