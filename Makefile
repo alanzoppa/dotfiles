@@ -48,9 +48,7 @@ setup:
 	
 	@echo ""
 	@echo "Setting up opencode..."
-	@if command -v opencode >/dev/null 2>&1; then \
-		echo "  opencode already installed"; \
-	elif [ -x "$(HOME)/.opencode/bin/opencode" ]; then \
+	@if command -v opencode >/dev/null 2>&1 || [ -x "$(HOME)/.opencode/bin/opencode" ]; then \
 		echo "  opencode already installed"; \
 	elif command -v npx >/dev/null 2>&1; then \
 		echo "  Installing opencode..."; \
@@ -58,7 +56,7 @@ setup:
 	else \
 		echo "  Warning: npx not found, cannot install opencode"; \
 	fi
-	@OPENCODE_CONFIG=$$(command -v opencode >/dev/null 2>&1 && opencode --config-dir 2>/dev/null || [ -x "$(HOME)/.opencode/bin/opencode" ] && $(HOME)/.opencode/bin/opencode --config-dir 2>/dev/null || echo "$(HOME)/.config/opencode"); \
+	@OPENCODE_CONFIG=$$(if [ -d "$(HOME)/.config/opencode" ]; then echo "$(HOME)/.config/opencode"; elif [ -d "$(HOME)/.opencode" ]; then echo "$(HOME)/.opencode"; else echo "$(HOME)/.config/opencode"; fi); \
 	if [ -f "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
 		echo "  AGENTS.md already exists in config"; \
 	elif [ -L "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
