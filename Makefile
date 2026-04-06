@@ -4,6 +4,8 @@
 # Detect OS
 UNAME_S := $(shell uname -s)
 
+DOTFILES_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
 setup:
 	@echo "=== Dotfiles Setup ==="
 	@echo "OS: $(UNAME_S)"
@@ -44,6 +46,23 @@ setup:
 		echo "    - macOS: brew install ack"; \
 	fi
 	
+	@echo ""
+	@echo "Setting up opencode..."
+	@if command -v opencode >/dev/null 2>&1; then \
+		echo "  opencode already installed"; \
+	else \
+		echo "  Installing opencode..."; \
+		npx -y opencode@latest install; \
+	fi
+	@OPENCODE_CONFIG=$$(opencode --config-dir 2>/dev/null || echo "${HOME}/.config/opencode"); \
+	if [ -f "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
+		echo "  AGENTS.md already exists in config"; \
+	elif [ -L "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
+		echo "  AGENTS.md symlink already exists"; \
+	else \
+		echo "  Symlinking AGENTS.md to $$OPENCODE_CONFIG"; \
+		ln -sf "${DOTFILES_DIR}/opencode/AGENTS.md" "$$OPENCODE_CONFIG/AGENTS.md"; \
+	fi
 	@echo ""
 	@echo "=== Setup Complete ==="
 	@echo "Run 'chsh -s /bin/zsh' to change your shell"
