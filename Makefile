@@ -57,13 +57,12 @@ setup:
 		echo "  Warning: npx not found, cannot install opencode"; \
 	fi
 	@OPENCODE_CONFIG=$$(if [ -d "$(HOME)/.config/opencode" ]; then echo "$(HOME)/.config/opencode"; elif [ -d "$(HOME)/.opencode" ]; then echo "$(HOME)/.opencode"; else echo "$(HOME)/.config/opencode"; fi); \
-	if [ -f "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
-		echo "  AGENTS.md already exists in config"; \
-	elif [ -L "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
-		echo "  AGENTS.md symlink already exists"; \
+	if [ -L "$$OPENCODE_CONFIG/AGENTS.md" ] && [ "$$(readlink -f $$OPENCODE_CONFIG/AGENTS.md)" = "${DOTFILES_DIR}opencode/AGENTS.md" ]; then \
+		echo "  AGENTS.md symlink already correct"; \
 	else \
+		rm -f "$$OPENCODE_CONFIG/AGENTS.md"; \
 		echo "  Symlinking AGENTS.md to $$OPENCODE_CONFIG"; \
-		ln -sf "${DOTFILES_DIR}/opencode/AGENTS.md" "$$OPENCODE_CONFIG/AGENTS.md"; \
+		ln -sf "${DOTFILES_DIR}opencode/AGENTS.md" "$$OPENCODE_CONFIG/AGENTS.md"; \
 	fi
 	@echo ""
 	@echo "=== Setup Complete ==="
