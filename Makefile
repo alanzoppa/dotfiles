@@ -6,6 +6,8 @@ UNAME_S := $(shell uname -s)
 
 DOTFILES_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
+OPENCODE_PATH := $(shell which opencode 2>/dev/null || command -v opencode 2>/dev/null || [ -f "$(HOME)/.opencode/bin/opencode" ] && echo "$(HOME)/.opencode/bin/opencode" || echo "")
+
 setup:
 	@echo "=== Dotfiles Setup ==="
 	@echo "OS: $(UNAME_S)"
@@ -48,13 +50,15 @@ setup:
 	
 	@echo ""
 	@echo "Setting up opencode..."
-	@if command -v opencode >/dev/null 2>&1; then \
+	@if [ -n "$(OPENCODE_PATH)" ] && [ -x "$(OPENCODE_PATH)" ]; then \
 		echo "  opencode already installed"; \
-	else \
+	elif command -v npx >/dev/null 2>&1; then \
 		echo "  Installing opencode..."; \
 		npx -y opencode@latest install; \
+	else \
+		echo "  Warning: npx not found, cannot install opencode"; \
 	fi
-	@OPENCODE_CONFIG=$$(opencode --config-dir 2>/dev/null || echo "${HOME}/.config/opencode"); \
+	@OPENCODE_CONFIG=$$(if [ -n "$(OPENCODE_PATH)" ] && [ -x "$(OPENCODE_PATH)" ]; then $(OPENCODE_PATH) --config-dir 2>/dev/null; elif command -v opencode >/dev/null 2>&1; then opencode --config-dir 2>/dev/null; else echo "$(HOME)/.config/opencode"; fi); \
 	if [ -f "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
 		echo "  AGENTS.md already exists in config"; \
 	elif [ -L "$$OPENCODE_CONFIG/AGENTS.md" ]; then \
