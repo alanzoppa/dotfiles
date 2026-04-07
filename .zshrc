@@ -69,3 +69,6 @@ fi
 if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
+
+# opencode
+export PATH=/home/alan/.opencode/bin:$PATH
