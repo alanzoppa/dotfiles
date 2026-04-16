@@ -72,3 +72,6 @@ fi
 
 # opencode
 export PATH=/home/alan/.opencode/bin:$PATH
+
+# OpenClaw Completion
+source "/home/alan/.openclaw/completions/openclaw.zsh"

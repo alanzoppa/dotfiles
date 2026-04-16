@@ -1,85 +1,36 @@
-# Dotfiles Makefile
-# Platform detection and setup
+OPENCODE_CONFIG := $(HOME)/.config/opencode
+OPENCODE_SRC    := $(DOTFILES_DIR)/opencode
+OPENCODE_LINKS  := AGENTS.md agents skills
 
-# Detect OS
-UNAME_S := $(shell uname -s)
+.PHONY: opencode opencode-unlink
 
-DOTFILES_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+opencode:
+	@mkdir -p $(OPENCODE_CONFIG)
+	@for name in $(OPENCODE_LINKS); do \
+		dst="$(OPENCODE_CONFIG)/$$name"; \
+		src="$(OPENCODE_SRC)/$$name"; \
+		if [ -L "$$dst" ]; then \
+			cur=$$(readlink "$$dst"); \
+			if [ "$$cur" = "$$src" ]; then \
+				echo "  OK   $$dst → $$src"; \
+			else \
+				rm "$$dst"; \
+				ln -s "$$src" "$$dst"; \
+				echo "  FIX  $$dst → $$src (was $$cur)"; \
+			fi; \
+		elif [ -e "$$dst" ]; then \
+			echo "  SKIP $$dst exists and is not a symlink"; \
+		else \
+			ln -s "$$src" "$$dst"; \
+			echo "  LINK $$dst → $$src"; \
+		fi; \
+	done
 
-setup:
-	@echo "=== Dotfiles Setup ==="
-	@echo "OS: $(UNAME_S)"
-	@echo ""
-	@echo "Checking for conflicts..."
-	@bash scripts/check_conflicts.sh || (echo "Please resolve conflicts first" && exit 1)
-	@echo ""
-	@echo "Initializing submodules..."
-	git submodule init
-	git submodule update --init --recursive
-	@echo ""
-	@echo "Creating symlinks..."
-	python3 bin/build_links.py
-	@echo ""
-	@echo "Setting up oh-my-zsh..."
-	sh .oh-my-zsh/tools/install.sh
-	@echo ""
-	@echo "Setting up ack..."
-	@# Platform-specific ack setup
-	@if command -v ack >/dev/null 2>&1; then \
-		echo "  ack already installed"; \
-	elif [ -f /usr/bin/ack-grep ]; then \
-		echo "  Installing ack (Debian/Ubuntu)"; \
-		sudo ln -sf /usr/bin/ack-grep /usr/local/bin/ack 2>/dev/null || echo "  Note: Could not create symlink (may need sudo)"; \
-	elif [ -f /usr/local/bin/ack-grep ]; then \
-		echo "  Installing ack (Homebrew)"; \
-		sudo ln -sf /usr/local/bin/ack-grep /usr/local/bin/ack 2>/dev/null || echo "  Note: Could not create symlink (may need sudo)"; \
-	elif command -v brew >/dev/null 2>&1; then \
-		echo "  Installing ack via Homebrew"; \
-		brew install ack; \
-	elif command -v apt-get >/dev/null 2>&1; then \
-		echo "  Installing ack via apt (Debian/Ubuntu)"; \
-		sudo apt-get update && sudo apt-get install -y ack-grep; \
-	else \
-		echo "  Warning: Could not detect package manager"; \
-		echo "  Please install ack manually:"; \
-		echo "    - Debian/Ubuntu: sudo apt-get install ack-grep"; \
-		echo "    - macOS: brew install ack"; \
-	fi
-	
-	@echo ""
-	@echo "Setting up opencode..."
-	@if command -v opencode >/dev/null 2>&1 || [ -x "$(HOME)/.opencode/bin/opencode" ]; then \
-		echo "  opencode already installed"; \
-	elif command -v npx >/dev/null 2>&1; then \
-		echo "  Installing opencode..."; \
-		npx -y opencode@latest install; \
-	else \
-		echo "  Warning: npx not found, cannot install opencode"; \
-	fi
-	@OPENCODE_CONFIG=$$(if [ -d "$(HOME)/.config/opencode" ]; then echo "$(HOME)/.config/opencode"; elif [ -d "$(HOME)/.opencode" ]; then echo "$(HOME)/.opencode"; else echo "$(HOME)/.config/opencode"; fi); \
-	if [ -L "$$OPENCODE_CONFIG/AGENTS.md" ] && [ "$$(readlink -f $$OPENCODE_CONFIG/AGENTS.md)" = "${DOTFILES_DIR}opencode/AGENTS.md" ]; then \
-		echo "  AGENTS.md symlink already correct"; \
-	else \
-		rm -f "$$OPENCODE_CONFIG/AGENTS.md"; \
-		echo "  Symlinking AGENTS.md to $$OPENCODE_CONFIG"; \
-		ln -sf "${DOTFILES_DIR}opencode/AGENTS.md" "$$OPENCODE_CONFIG/AGENTS.md"; \
-	fi
-	@echo ""
-	@echo "=== Setup Complete ==="
-	@echo "Run 'chsh -s /bin/zsh' to change your shell"
-	@echo "Run 'zsh' or restart your terminal to apply changes"
-
-check:
-	@bash scripts/check_conflicts.sh
-
-update:
-	@echo "=== Updating Dotfiles ==="
-	python3 bin/build_links.py
-	@echo "Updating oh-my-zsh..."
-	sh .oh-my-zsh/tools/upgrade.sh
-	@echo "Updating submodules..."
-	git submodule update --init --recursive
-	git submodule foreach git reset --hard && git checkout master && git pull
-	@echo "=== Update Complete ==="
-
-
+opencode-unlink:
+	@for name in $(OPENCODE_LINKS); do \
+		dst="$(OPENCODE_CONFIG)/$$name"; \
+		if [ -L "$$dst" ]; then \
+			rm "$$dst"; \
+			echo "  RM   $$dst"; \
+		fi; \
+	done
