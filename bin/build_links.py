@@ -17,7 +17,7 @@ dotfiles = os.listdir(DOTFILES_LOCATION)
 for file in IGNOREABLE_FILES:
     try:
         dotfiles.remove(file)
-    except OSError:
+    except ValueError:
         pass
 
 for f in dotfiles:
