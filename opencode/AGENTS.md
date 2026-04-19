@@ -20,6 +20,40 @@
 
 Server-specific knowledge is available via opencode skills. Use the `skill` tool to discover and load them on-demand.
 
+## Browser Automation: agent-browser
+
+`agent-browser` is installed globally (v0.26.0) and available on PATH. It provides fast Chrome automation via accessibility-tree snapshots with compact `@eN` element refs.
+
+**Load the skill for full instructions:** Use the `skill` tool with name `agent-browser`.
+
+### Headed login → headless automation
+
+The most common workflow is: open a browser in the foreground so the user can log in manually, then save the auth state and switch to headless for automation.
+
+```bash
+# 1. Open headed for manual login
+agent-browser --headed open <url>
+# (user logs in manually, then confirms)
+# 2. Save auth state
+agent-browser state save ./auth-state.json
+# 3. Close and reopen headless with saved state
+agent-browser close
+agent-browser --state ./auth-state.json open <url>
+```
+
+Alternative: `--session-name <name>` auto-saves/restores. Alternative: `--profile <path>` persists everything across restarts.
+
+### Core loop
+
+```bash
+agent-browser open <url>        # Navigate
+agent-browser snapshot -i       # See interactive elements (assigns @eN refs)
+agent-browser click @e3         # Interact using refs
+agent-browser snapshot -i       # Re-snapshot after page changes (refs go stale!)
+```
+
+**Refs are stale after any page change. Always re-snapshot before interacting.**
+
 ## Subagent: Hurry
 
 Use the `@hurry` subagent (via the Task tool) for well-defined, self-contained or repetitive tasks where speed matters more than deep reasoning. Hurry runs on `ollama-cloud/minimax-m2.7` — fast but less capable than the primary model. When in Plan mode, always highlight where in the plan @hurry will be used.
