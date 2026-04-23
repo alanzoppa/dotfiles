@@ -30,6 +30,7 @@ from tabulate import tabulate
 LINEAR_API_URL = "https://api.linear.app/graphql"
 GITHUB_API_URL = "https://api.github.com/graphql"
 DEFAULT_TEAM = "Convert Demand"
+ISSUE_PREFIX = "CONVRT"
 
 PERSON_HEADERS = ["Status", "Issue", "Title", "Project", "PR", "Check", "Reviews", "Approvals"]
 PROJECT_HEADERS = ["Status", "Issue", "Assignee", "Title", "PR", "Check", "Reviews", "Approvals"]
@@ -125,25 +126,25 @@ def get_issues(team_id, state_name):
 
 
 def fetch_github_prs():
-    """Fetch open PRs with CONVRT- from both repos in a single GraphQL call."""
-    q = """
-    {
-      search(query: "is:open repo:simplepractice/simplepractice repo:simplepractice/client-portal CONVRT- in:title", type: ISSUE, first: 100) {
-        nodes {
-          ... on PullRequest {
+    """Fetch open PRs with {ISSUE_PREFIX}- from both repos in a single GraphQL call."""
+    q = f"""
+    {{
+      search(query: "is:open repo:simplepractice/simplepractice repo:simplepractice/client-portal {ISSUE_PREFIX}- in:title", type: ISSUE, first: 100) {{
+        nodes {{
+          ... on PullRequest {{
             number
             title
             url
             isDraft
-            reviews(first: 100) { totalCount nodes { state } }
-            commits(last: 1) {
-              nodes { commit { statusCheckRollup { state } } }
-            }
-            repository { name owner { login } }
-          }
-        }
-      }
-    }
+            reviews(first: 100) {{ totalCount nodes {{ state }} }}
+            commits(last: 1) {{
+              nodes {{ commit {{ statusCheckRollup {{ state }} }} }}
+            }}
+            repository {{ name owner {{ login }} }}
+          }}
+        }}
+      }}
+    }}
     """
     data = github_graphql(q)
     prs = []
@@ -179,7 +180,7 @@ def get_check_emoji(check_status):
 
 
 def extract_issue_key(title):
-    match = re.search(r"(CONVRT-\d+)", title)
+    match = re.search(rf"({ISSUE_PREFIX}-\d+)", title)
     return match.group(1) if match else None
 
 
@@ -195,19 +196,24 @@ def truncate(text, width=22):
     return textwrap.shorten(str(text or ""), width=width, placeholder="...")
 
 
+def first_name(text):
+    return str(text or "").split()[0] if text else ""
+
+
 def issue_table_rows(issue, headers, extra_col_name, extra_col_value):
     prs = issue.get("prs", [])
 
     def base_dict():
+        extra = first_name(extra_col_value) if extra_col_name == "Assignee" else truncate(extra_col_value, 24)
         return {
             "Status": issue["state"]["name"],
             "Issue": issue["identifier"],
-            "Title": truncate(issue["title"], 35),
+            "Title": truncate(issue["title"], 60),
             "PR": "",
             "Check": "",
             "Reviews": "",
             "Approvals": "",
-            extra_col_name: truncate(extra_col_value, 24),
+            extra_col_name: extra,
         }
 
     if not prs:

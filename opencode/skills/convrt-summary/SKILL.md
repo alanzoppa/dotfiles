@@ -7,7 +7,7 @@ name: convrt-summary
 
 Generate a status summary for a Linear engineering team. Default team is **Convert Demand**.
 
-**On load:** Immediately execute the script and display its full output.
+**On load:** Execute the script and return its output directly. Do not re-print or reformat the output.
 
 ```bash
 cd ~/.dotfiles/opencode/skills/convrt-summary
