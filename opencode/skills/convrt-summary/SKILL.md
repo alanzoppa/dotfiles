@@ -7,9 +7,22 @@ name: convrt-summary
 
 Generate a status summary for a Linear engineering team. Default team is **Convert Demand**.
 
+**On load:** Immediately execute the script and display its full output.
+
+```bash
+cd ~/.dotfiles/opencode/skills/convrt-summary
+python3 convrt_summary.py
+```
+
 ## Setup
 
-Ensure `~/.dotfiles/opencode/skills/convrt-summary/.env` has:
+1. Install the dependency:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Ensure `~/.dotfiles/opencode/skills/convrt-summary/.env` has:
 
 ```
 LINEAR_API_KEY=<your Linear personal API key>
@@ -29,7 +42,7 @@ python3 convrt_summary.py
 1. Fetches **In Progress** and **In Review** issues from Linear for the Convert Demand team.
 2. Fetches all open PRs matching `CONVRT-` from `simplepractice/simplepractice` and `simplepractice/client-portal` via GitHub GraphQL (single call).
 3. Correlaes PRs to issues by `CONVRT-NNNN` key.
-4. Prints a header + two views:
+4. Prints a header + two table views:
 
 ### Header
 ```
@@ -37,43 +50,39 @@ Team: Convert Demand | In Progress: {n} | In Review: {n} | Active PRs: {with_prs
 ```
 
 ### Option A — Person-centric view
-- Groups issues by `assignee.name`, sorted alphabetically.
-- Within each person, groups by status (`In Progress`, then `In Review`).
-- Per issue:
-  - `[H] CONVRT-XXXX — Title`
-  - If PRs exist, indented PR indicator string.
-  - If estimate exists: `(2 Points)`
-  - If project exists: `| Project Name`
+- One plain-text table per assignee, sorted alphabetically.
+- Rows ordered by `In Progress` then `In Review`.
+- Columns: `Status`, `Issue`, `Title`, `Project`, `PR`, `Check`, `Reviews`, `Approvals`.
+- If an issue has multiple PRs, it gets one row per PR (issue data repeated, PR columns vary).
+- Issues with no PRs show blank PR columns.
 
 Example:
 ```
 Andrei Helo
-  In Progress (2)
-    [H] CONVRT-1169 — Integration API — Client GlobalMonarchChannels one-to-many migration
-      simplepractice#24777 🟡 (draft) 👀 0 reviews / ✅ 0 approvals
-    [H] CONVRT-1154 — Integration API — Helper methods prep
-  In Review (1)
-    [M] CONVRT-1131 — Performance of the "Mention" feature
-      simplepractice#24923 🟢 👀 2 reviews / ✅ 1 approval
++------------+-------------+-------------------------------+----------------------+---------------------+-------+---------+-----------+
+| Status     | Issue       | Title                         | Project              | PR                  | Check | Reviews | Approvals |
++------------+-------------+-------------------------------+----------------------+---------------------+-------+---------+-----------+
+| In Progress| CONVRT-1169 | Integration API - Client...   | Octave/Evernorth...  | simplepractice#24777| 🟡    | 0       | 0         |
+| In Progress| CONVRT-1154 | Helper methods prep           | Octave/Evernorth...  |                     |       |         |           |
+| In Review  | CONVRT-1131 | Performance of "Mention"      |                      | simplepractice#24923| 🟢    | 2       | 1         |
++------------+-------------+-------------------------------+----------------------+---------------------+-------+---------+-----------+
 ```
 
 ### Option B — Project-centric view
-- Groups issues by `project.name`. No-project issues under `(No Project)`.
-- Within each project, groups by status.
-- Per issue: `[H] CONVRT-XXXX — Assignee — Title` (PR states inline)
+- One plain-text table per project. No-project issues appear under `(No Project)`.
+- Same row/PR duplication rules as person view.
+- Columns: `Status`, `Issue`, `Assignee`, `Title`, `PR`, `Check`, `Draft`, `Reviews`, `Approvals`.
 
 Example:
 ```
 Octave/Evernorth Embrace integration
-  In Progress (3)
-    [H] CONVRT-1169 — Andrei Helo — Integration API — Client GlobalMonarchChannels one-to-many migration
-      simplepractice#24777 🟡 (draft) 👀 0 reviews / ✅ 0 approvals
-    [H] CONVRT-1154 — Andrei Helo — Integration API — Helper methods prep
-    [M] CONVRT-1164 — Scott Fanetti — Auto enable scored measures for above threshold scores for Octave transfer clients
-      simplepractice#25261 🟢 (draft) 👀 0 reviews / ✅ 0 approvals
-  In Review (2)
-    [M] CONVRT-1152 — Arturo Gonzalez — Evernorth rate expiration badge and tooltip on progress note
-    [H] CONVRT-1113 — Scott Fanetti — Auto-enable scored measures for Cigna members
++------------+-------------+-----------------------------+-------------------------------+---------------------+-------+---------+-----------+
+| Status     | Issue       | Assignee                    | Title                         | PR                  | Check | Reviews | Approvals |
++------------+-------------+-----------------------------+-------------------------------+---------------------+-------+---------+-----------+
+| In Progress| CONVRT-1169 | Andrei Helo                 | Integration API - Client...   | simplepractice#24777| 🟡    | 0       | 0         |
+| In Progress| CONVRT-1154 | Andrei Helo                 | Helper methods prep           |                     |       |         |           |
+| In Review  | CONVRT-1122 | Scott Fanetti               | Auto enable scored measures   | simplepractice#25261| 🟢    | 0       | 0         |
++------------+-------------+-----------------------------+-------------------------------+---------------------+-------+---------+-----------+
 ```
 
 ## PR indicator string
@@ -81,7 +90,6 @@ Octave/Evernorth Embrace integration
 - `🔴` if `check_status == failure`
 - `🟡` if check is pending/in_progress
 - `⚪` if no PR found
-- Append draft marker ` (draft)` if `draft == true`
 - Append review stats: `👀 N reviews / ✅ N approvals`
 
 ## Default team
@@ -98,5 +106,5 @@ Convert Demand
 - Follow the AGENTS.md rule: max 4 lines of output unless user asks for detail. Since this skill explicitly produces multi-line summaries, this rule is overridden internally.
 
 ## Architecture
-- `convrt_summary.py`: stdlib-only Python 3 script. Uses `urllib` for HTTP, `concurrent.futures` to parallelize Linear issue fetching, and GitHub GraphQL to batch PR + review + check data in a single call.
+- `convrt_summary.py`: Python 3 script. Uses `urllib` for HTTP, `concurrent.futures` to parallelize Linear issue fetching, `tabulate` for table rendering, and GitHub GraphQL to batch PR + review + check data in a single call.
 - `GITHUB_TOKEN` was moved from `~/.config/opencode/opencode.json` into `.env` (see commit history + backup `opencode.json.bak`).

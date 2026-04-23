@@ -3,7 +3,7 @@
 Convrt Summary — self-contained Python 3 (stdlib only).
 
 Fetches In Progress + In Review issues for the Convert Demand Linear team,
-correlates open GitHub PRs, and prints person-centric + project-centric views.
+correlates open GitHub PRs, and prints person-centric + project-centric tables.
 
 Usage:
     cd ~/.dotfiles/opencode/skills/convrt-summary
@@ -20,13 +20,19 @@ import json
 import os
 import re
 import sys
+import textwrap
 import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
+from tabulate import tabulate
+
 LINEAR_API_URL = "https://api.linear.app/graphql"
 GITHUB_API_URL = "https://api.github.com/graphql"
 DEFAULT_TEAM = "Convert Demand"
+
+PERSON_HEADERS = ["Status", "Issue", "Title", "Project", "PR", "Check", "Reviews", "Approvals"]
+PROJECT_HEADERS = ["Status", "Issue", "Assignee", "Title", "PR", "Check", "Reviews", "Approvals"]
 
 
 def load_dotenv():
@@ -167,25 +173,9 @@ def fetch_github_prs():
     return prs
 
 
-def get_priority_abbrev(priority_name):
-    mapping = {"Urgent": "[P]", "High": "[H]", "Medium": "[M]", "Low": "[L]"}
-    return mapping.get(priority_name, "[ ]")
-
-
 def get_check_emoji(check_status):
     status = str(check_status).lower()
     return {"success": "🟢", "failure": "🔴", "pending": "🟡", "in_progress": "🟡"}.get(status, "⚪")
-
-
-def build_pr_indicator(pr):
-    parts = [f"{pr['repo']}#{pr['number']}", get_check_emoji(pr["check_status"])]
-    if pr.get("draft"):
-        parts.append("(draft)")
-    total = pr["reviews_total"]
-    approved = pr["reviews_approved"]
-    approval_word = "approval" if approved == 1 else "approvals"
-    parts.append(f"👀 {total} reviews / ✅ {approved} {approval_word}")
-    return " ".join(parts)
 
 
 def extract_issue_key(title):
@@ -193,9 +183,46 @@ def extract_issue_key(title):
     return match.group(1) if match else None
 
 
-def get_priority_label_from_value(value):
-    mapping = {0: "Urgent", 1: "High", 2: "Medium", 3: "Low"}
-    return mapping.get(value, "")
+def short_repo(repo):
+    if repo == "simplepractice/simplepractice":
+        return "sp"
+    if repo == "simplepractice/client-portal":
+        return "cp"
+    return repo.split("/")[-1]
+
+
+def truncate(text, width=22):
+    return textwrap.shorten(str(text or ""), width=width, placeholder="...")
+
+
+def issue_table_rows(issue, headers, extra_col_name, extra_col_value):
+    prs = issue.get("prs", [])
+
+    def base_dict():
+        return {
+            "Status": issue["state"]["name"],
+            "Issue": issue["identifier"],
+            "Title": truncate(issue["title"], 35),
+            "PR": "",
+            "Check": "",
+            "Reviews": "",
+            "Approvals": "",
+            extra_col_name: truncate(extra_col_value, 24),
+        }
+
+    if not prs:
+        d = base_dict()
+        return [[d.get(h, "") for h in headers]]
+
+    rows = []
+    for pr in prs:
+        d = base_dict()
+        d["PR"] = f"{short_repo(pr['repo'])}#{pr['number']}"
+        d["Check"] = get_check_emoji(pr["check_status"])
+        d["Reviews"] = str(pr["reviews_total"])
+        d["Approvals"] = str(pr["reviews_approved"])
+        rows.append([d.get(h, "") for h in headers])
+    return rows
 
 
 def main():
@@ -216,7 +243,11 @@ def main():
         print(f"No active issues found for team {team_name}")
         sys.exit(0)
 
-    prs = fetch_github_prs()
+    try:
+        prs = fetch_github_prs()
+    except Exception as e:
+        print(f"Warning: GitHub PR fetch failed ({e}), continuing without PR data.", file=sys.stderr)
+        prs = []
 
     issues_by_key = {}
     for issue in all_issues:
@@ -243,24 +274,11 @@ def main():
     for person in sorted(by_person.keys()):
         lines.append(f"\n{person}")
         issues = sorted(by_person[person], key=lambda i: (i["state"]["name"] != "In Progress", i["identifier"]))
-        grouped = defaultdict(list)
+        rows = []
         for issue in issues:
-            grouped[issue["state"]["name"]].append(issue)
-        for status in ["In Progress", "In Review"]:
-            if status in grouped:
-                lines.append(f"  {status} ({len(grouped[status])})")
-                for issue in grouped[status]:
-                    ident = issue["identifier"]
-                    title = issue["title"]
-                    priority_label = issue.get("priorityLabel") or get_priority_label_from_value(issue.get("priority"))
-                    priority = get_priority_abbrev(priority_label)
-                    estimate = issue.get("estimate")
-                    estimate_str = f" ({estimate} Points)" if estimate else ""
-                    project = (issue.get("project") or {}).get("name")
-                    project_str = f" | {project}" if project else ""
-                    lines.append(f"    {priority} {ident} --- {title}{estimate_str}{project_str}")
-                    for pr in issue.get("prs", []):
-                        lines.append(f"      {build_pr_indicator(pr)}")
+            project_name = (issue.get("project") or {}).get("name") or ""
+            rows.extend(issue_table_rows(issue, PERSON_HEADERS, "Project", project_name))
+        lines.append(tabulate(rows, headers=PERSON_HEADERS, tablefmt="grid", stralign="left"))
 
     by_project = defaultdict(list)
     for issue in all_issues:
@@ -268,26 +286,14 @@ def main():
         by_project[project_name].append(issue)
 
     lines.append("\n\n=== Project-centric View ===")
-    for project in sorted(by_project.keys()):
-        lines.append(f"\n{project}")
-        issues = sorted(by_project[project], key=lambda i: (i["state"]["name"] != "In Progress", i["identifier"]))
-        grouped = defaultdict(list)
+    for project_name in sorted(by_project.keys()):
+        lines.append(f"\n{project_name}")
+        issues = sorted(by_project[project_name], key=lambda i: (i["state"]["name"] != "In Progress", i["identifier"]))
+        rows = []
         for issue in issues:
-            grouped[issue["state"]["name"]].append(issue)
-        for status in ["In Progress", "In Review"]:
-            if status in grouped:
-                lines.append(f"  {status} ({len(grouped[status])})")
-                for issue in grouped[status]:
-                    ident = issue["identifier"]
-                    assignee = (issue.get("assignee") or {}).get("name") or "(Unassigned)"
-                    title = issue["title"]
-                    priority_label = issue.get("priorityLabel") or get_priority_label_from_value(issue.get("priority"))
-                    priority = get_priority_abbrev(priority_label)
-                    pr_strs = [build_pr_indicator(pr) for pr in issue.get("prs", [])]
-                    pr_part = "  ".join(pr_strs) if pr_strs else ""
-                    lines.append(f"    {priority} {ident} --- {assignee} --- {title}{('  ' + pr_part) if pr_part else ''}")
-            else:
-                lines.append("")
+            assignee = (issue.get("assignee") or {}).get("name") or ""
+            rows.extend(issue_table_rows(issue, PROJECT_HEADERS, "Assignee", assignee))
+        lines.append(tabulate(rows, headers=PROJECT_HEADERS, tablefmt="grid", stralign="left"))
 
     print("\n".join(lines))
 
