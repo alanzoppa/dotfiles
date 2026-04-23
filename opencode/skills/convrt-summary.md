@@ -9,11 +9,20 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
 
 ## Workflow
 
-1. **Determine the team name**
+1. **Check MCP availability before doing anything**
+   - Attempt a lightweight `linear_list_teams` call or verify `linear_list_issues` is in the available toolset.
+   - If Linear tools are unavailable, **STOP immediately** and output exactly:
+     > Linear MCP tools are disabled. Run `npx @linear/mcp` (or enable in opencode config) and try again.
+   - Attempt a lightweight `github_search_pull_requests` call or verify `github_pull_request_read` is in the available toolset.
+   - If GitHub tools are unavailable, **STOP immediately** and output exactly:
+     > GitHub MCP tools are disabled. Run `npx @github/mcp` (or enable in opencode config) and try again.
+   - Do not proceed with fetching data or printing summaries if either MCP is missing.
+
+2. **Determine the team name**
    - Parse from user request if provided (e.g. "summarize Team Alpha").
    - Default: `Convert Demand` if not specified or ambiguous.
 
-2. **Fetch Linear issues**
+3. **Fetch Linear issues**
    - Use `linear_list_issues` twice:
      - `state: "In Progress"`
      - `state: "In Review"`
@@ -29,7 +38,7 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
      - `gitBranchName` (may be `null`)
      - `status` state name
 
-3. **Batch-fetch GitHub PRs**
+4. **Batch-fetch GitHub PRs**
    - Call `github_search_pull_requests` with:
      - `owner: "simplepractice"`, `query: "is:open CONVRT- in:title"`, `perPage: 100`
    - This returns all open PRs across all `simplepractice` repos for the user.
@@ -38,7 +47,7 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
      - `client-portal`
    - Map each PR to an issue key by extracting `CONVRT-\d+` from the PR title.
 
-4. **Enrich PRs with review + check state**
+5. **Enrich PRs with review + check state**
    - For each matched PR, call:
      - `github_pull_request_read` with `method: get`
      - `github_pull_request_read` with `method: get_status`
@@ -51,7 +60,7 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
      - `reviews.approved`: count of approvals
    - **Cache results** for the remainder of the skill invocation to avoid re-querying the same PR.
 
-5. **Correlate and build output**
+6. **Correlate and build output**
    - Each issue may have zero, one, or two PRs (one per repo).
    - Build a PR indicator string per issue:
      - `🟢` if `check_status == success`
@@ -62,7 +71,7 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
      - Append review stats: `👀 N reviews / ✅ N approvals`
    - Example: `simplepractice#25261 🟢 (draft) 👀 2 reviews / ✅ 1 approval`
 
-6. **Print Option A — Person-centric view**
+7. **Print Option A — Person-centric view**
    - Group issues by `assignee.name`, sorted alphabetically.
    - Within each person, group by `status` (`In Progress`, then `In Review`).
    - Per issue line:
@@ -84,7 +93,7 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
          simplepractice#24923 🟢 👀 2 reviews / ✅ 1 approval
    ```
 
-7. **Print Option B — Project-centric view**
+8. **Print Option B — Project-centric view**
    - Group issues by `project.name`. Issues with no project go under `(No Project)`.
    - Within each project, group by status.
    - Per issue line:
@@ -106,7 +115,7 @@ Generate a status summary for a Linear engineering team. Default team is **Conve
        [H] CONVRT-1113 — Scott Fanetti — Auto-enable scored measures for Cigna members
    ```
 
-8. **Header**
+9. **Header**
    - Print a one-line header at the top:
      - `Team: {team_name} | In Progress: {n} | In Review: {n} | Active PRs: {with_prs} / {total_issues}`
 
@@ -118,7 +127,8 @@ Convert Demand
 - `simplepractice/client-portal`
 
 ## Rules
-- If GitHub API rate limits or errors are encountered, continue with the PR health omitted rather than failing the entire summary.
+- **CRITICAL: Do not proceed if MCP tools are disabled.** Check Linear and GitHub tool availability first. If either is unavailable, output the exact reminder message and stop.
+- If GitHub API rate limits or errors are encountered *after* confirming tools are available, continue with the PR health omitted rather than failing the entire summary.
 - Do not include issues where `status != "In Progress" && status != "In Review"`.
 - If no issues are returned, state "No active issues found for team {team_name}".
 - Follow the AGENTS.md rule: max 4 lines of output unless user asks for detail. Since this skill explicitly produces multi-line summaries, this rule is overridden internally.
