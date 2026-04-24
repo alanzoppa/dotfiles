@@ -139,6 +139,13 @@ agent-browser screenshot --full full.png         # full page
 agent-browser screenshot --annotate map.png      # numbered labels keyed to refs
 ```
 
+**Analyzing screenshots**: When you need to describe or verify visual elements in screenshots, use kimi-k2.5's vision capabilities by reading the screenshot file:
+
+```bash
+agent-browser screenshot /tmp/page.png
+# Then use Read tool or kimi-k2.5 to analyze the image content
+```
+
 ## Auth vault (passwords never exposed in chat)
 
 ```bash
