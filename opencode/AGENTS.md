@@ -2,57 +2,28 @@
 
 ## Workflow
 
-- **Always maintain a todo list** for complex multi-step tasks. Update progress as you work.
-- **Push after successful complex changes** - When completing a series of related changes (model + migration + command updates + tests passing), commit AND push immediately.
-- **Test migrations** before committing model changes.
+- **Always maintain a todo list** for complex multi-step tasks. Update progress as you work, even in Build mode.
+- **Push after successful complex changes** - When completing a series of related changes (model + migration + command updates + tests passing), commit AND push immediately. Unless told otherwise, ensure that ALL tests are green before pushing.
+- **Test new functionality** plan and write automated tests as you go. Write regression tests where appropriate.
 - **Watch for AGENTS.md files** - Check for AGENTS.md files in the project root and subdirectories. Create new ones to share context with other agents. Keep them up to date when making changes to documented features, then commit and push.
 - **This file is tracked in a git repo** — if you modify it, commit and push the repo it lives in (resolve the symlink to find the repo root).
 - **Skills and agent files are also in git repos** — the same rule applies: if you modify skill or agent files, resolve symlinks to find the containing repo root, then commit and push.
 
 ## Code Style
 
-- **No comments** unless explicitly requested.
+- **Comments are terse** omit if code is self-explanatory, use sparingly, keep short.
 - **Follow existing patterns** in the codebase.
 - **Type safety is preferred** when supported by the language.
 - **Keep responses concise** - max 4 lines unless user asks for detail.
+- **Don't reinvent the wheel** - If a robust library is available, prefer this over implementing something from scratch. Use standard or existing package management solutions. Don't re-test library functionality.
 
 ## Server Skills
 
-Server-specific knowledge is available via opencode skills. Use the `skill` tool to discover and load them on-demand.
+Server-specific knowledge is often available via opencode skills. Use the `skill` tool to discover and load them on-demand.
 
 ## Browser Automation: agent-browser
 
-`agent-browser` is installed globally (v0.26.0) and available on PATH. It provides fast Chrome automation via accessibility-tree snapshots with compact `@eN` element refs.
-
 **Load the skill for full instructions:** Use the `skill` tool with name `agent-browser`.
-
-### Headed login → headless automation
-
-The most common workflow is: open a browser in the foreground so the user can log in manually, then save the auth state and switch to headless for automation.
-
-```bash
-# 1. Open headed for manual login
-agent-browser --headed open <url>
-# (user logs in manually, then confirms)
-# 2. Save auth state
-agent-browser state save ./auth-state.json
-# 3. Close and reopen headless with saved state
-agent-browser close
-agent-browser --state ./auth-state.json open <url>
-```
-
-Alternative: `--session-name <name>` auto-saves/restores. Alternative: `--profile <path>` persists everything across restarts.
-
-### Core loop
-
-```bash
-agent-browser open <url>        # Navigate
-agent-browser snapshot -i       # See interactive elements (assigns @eN refs)
-agent-browser click @e3         # Interact using refs
-agent-browser snapshot -i       # Re-snapshot after page changes (refs go stale!)
-```
-
-**Refs are stale after any page change. Always re-snapshot before interacting.**
 
 ## Subagent: Hurry
 
