@@ -8,6 +8,7 @@
 - **Watch for AGENTS.md files** - Check for AGENTS.md files in the project root and subdirectories. Create new ones to share context with other agents. Keep them up to date when making changes to documented features, then commit and push.
 - **This file is tracked in a git repo** — if you modify it, commit and push the repo it lives in (resolve the symlink to find the repo root).
 - **Skills and agent files are also in git repos** — the same rule applies: if you modify skill or agent files, resolve symlinks to find the containing repo root, then commit and push.
+- **Prefer subagent parallelization** - When planning complex multi-step tasks, execute any non-interdependent tasks with subagents, in parallel where possible. Use the @hurry subagent for simple tasks and your own model for more complex tasks.
 
 ## Code Style
 
