@@ -27,19 +27,15 @@ Server-specific knowledge is often available via opencode skills. Use the `skill
 
 ## Subagent: Hurry
 
-Use the `@hurry` subagent (via the Task tool) for well-defined, self-contained or repetitive tasks where speed matters more than deep reasoning. Hurry runs on `ollama-cloud/minimax-m2.7` — fast but less capable than the primary model. When in Plan mode, always highlight where in the plan @hurry will be used.
+Use the `@hurry` subagent (via the Task tool) for well-defined, self-contained or repetitive tasks where speed matters more than deep reasoning. Hurry runs on `ollama-cloud/minimax-m2.7` — fast but less capable than the primary model. It has `read`, `glob`, `grep`, `edit`, `bash`, and `webfetch` access.
 
 **When to use Hurry:**
-- Open-ended searches that waste context
+- Open-ended searches that would waste context
 - Generating migration scripts or data transformations
 - Tasks with clear specs that don't need architectural judgment
 
 **When NOT to use Hurry:**
 - Complex orchestration or multi-step planning
-- Human or agent-readable documentation
+- Human-readable documentation
 - Tasks requiring understanding of subtle interdependencies
 - Anything requiring deep context from the conversation
-
-**Critical rules:**
-- **Always include source code** (models, schemas, interfaces) in the prompt when output must match them. Hurry cannot read files — it hallucinates plausible but wrong field names, defaults, and behaviors when it lacks context.
-- **Always review for hallucinated details** — especially field names, default values, and behavioral descriptions. It defaults to common patterns rather than matching reality.

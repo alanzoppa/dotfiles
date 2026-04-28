@@ -5,6 +5,9 @@ model: ollama-cloud/minimax-m2.7
 temperature: 0.2
 hidden: true
 permission:
+  read: allow
+  glob: allow
+  grep: allow
   edit: allow
   bash: allow
   webfetch: allow
