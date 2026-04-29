@@ -8,7 +8,7 @@
 - **Watch for AGENTS.md files** - Check for AGENTS.md files in the project root and subdirectories. Create new ones to share context with other agents. Keep them up to date when making changes to documented features, then commit and push.
 - **This file is tracked in a git repo** — if you modify it, commit and push the repo it lives in (resolve the symlink to find the repo root).
 - **Skills and agent files are also in git repos** — the same rule applies: if you modify skill or agent files, resolve symlinks to find the containing repo root, then commit and push.
-- **Prefer subagent parallelization** - When planning complex multi-step tasks, execute any non-interdependent tasks with subagents, in parallel where possible. Use the @hurry subagent for simple tasks and your own model for more complex tasks.
+- **Prefer subagent parallelization** - When planning complex multi-step tasks, dispatch non-interdependent work to subagents in parallel. Use the dispatch guide below to pick the right subagent for each task.
 
 ## Code Style
 
@@ -26,17 +26,32 @@ Server-specific knowledge is often available via opencode skills. Use the `skill
 
 **Load the skill for full instructions:** Use the `skill` tool with name `agent-browser`.
 
-## Subagent: Hurry
+## Subagent Dispatch
 
-Use the `@hurry` subagent (via the Task tool) for well-defined, self-contained or repetitive tasks where speed matters more than deep reasoning. Hurry runs on `ollama-cloud/minimax-m2.7` — fast but less capable than the primary model. It has `read`, `glob`, `grep`, `edit`, `bash`, and `webfetch` access.
+You are the only agent that dispatches subagents. Subagents never dispatch others. Use the Task tool with the appropriate subagent type.
 
-**When to use Hurry:**
-- Open-ended searches that would waste context
-- Generating migration scripts or data transformations
-- Tasks with clear specs that don't need architectural judgment
+### Decision Matrix
 
-**When NOT to use Hurry:**
-- Complex orchestration or multi-step planning
-- Human-readable documentation
-- Tasks requiring understanding of subtle interdependencies
-- Anything requiring deep context from the conversation
+| Task Type | Subagent | Model | Why |
+|---|---|---|---|
+| Exploring many files, batch metadata edits, pattern-based find-and-replace | `@flash` | `ollama-cloud/deepseek-v4-flash` | Token-efficient, fast on large sets |
+| Writing standalone files, tests, configs, migrations, data transforms | `@hurry` | `ollama-cloud/minimax-m2.7` | Fast for well-defined, self-contained work |
+| Architectural changes, refactoring, complex feature implementation | `@kimi` | `ollama-cloud/kimi-k2.6` | Smarter model for tasks requiring judgment |
+| Open-ended codebase searches, grepping many patterns across many files | `@hurry` | `ollama-cloud/minimax-m2.7` | Avoids wasting primary context |
+| Multi-step orchestration, planning, tasks requiring deep conversation context | Primary model | Your model | Only the primary model has full context |
+
+### Capability Matrix
+
+| Subagent | Model | Temp | read | glob | grep | edit | bash | webfetch | task |
+|---|---|---|---|---|---|---|---|---|---|
+| `@kimi` | `ollama-cloud/kimi-k2.6` | 0.3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — |
+| `@hurry` | `ollama-cloud/minimax-m2.7` | 0.2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — |
+| `@flash` | `ollama-cloud/deepseek-v4-flash` | 0.1 | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
+
+### Rules for Dispatching
+
+- **Parallelize aggressively** — when you have 2+ independent tasks, dispatch them in parallel to different subagents.
+- **Match complexity to model** — don't send trivial tasks to `@kimi` or demanding tasks to `@hurry`.
+- **Flash tasks must be well-defined** — pattern-based edits, metadata changes, or exploration only. No architectural decisions.
+- **Always specify the subagent type** when presenting a plan. Say "I'll dispatch X to `@kimi`, Y to `@hurry`".
+- **Present subagent choice in plan** — before entering Build mode, explain which subagents will handle which parts.
