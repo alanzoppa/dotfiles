@@ -29,6 +29,10 @@ You are the only agent that dispatches subagents. Subagents never dispatch other
 | Open-ended codebase searches, grepping many patterns across many files | `@hurry` | `ollama-cloud/minimax-m2.7` | Avoids wasting primary context |
 | Multi-step orchestration, planning, tasks requiring deep conversation context | Primary model | Your model | Only the primary model has full context |
 
+## Subagent MCP limitation
+
+MCP servers (notes-browser, Linear, Notion, GitHub) are enabled in `opencode.json` but **subagents dispatched via the Task tool cannot access them**. Only the primary model and subagents that use tool calls directly (i.e. not Task tool dispatch) inherit MCP tools. When dispatching subagents to investigate across MCP-backed systems, the primary model must do the MCP calls itself or the subagent prompt must account for the limitation.
+
 ### Capability Matrix
 
 | Subagent | Model | Temp | read | glob | grep | edit | bash | webfetch | task |
