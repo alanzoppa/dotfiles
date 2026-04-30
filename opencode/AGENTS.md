@@ -2,33 +2,22 @@
 
 ## Workflow
 
-- **Always maintain a todo list** for complex multi-step tasks. Update progress as you work, even in Build mode.
+- **Always maintain a todo list** for complex multi-step tasks. Update progress as you work, in both Plan and Build mode.
+- **MUST parallelize with subagents** — Default to dispatching subagents. Doing everything yourself is the exception, not the rule. This applies in ALL modes (Plan and Build).
 - **Push after successful complex changes** - When completing a series of related changes (model + migration + command updates + tests passing), commit AND push immediately. Unless told otherwise, ensure that ALL tests are green before pushing.
 - **Test new functionality** plan and write automated tests as you go. Write regression tests where appropriate.
 - **Watch for AGENTS.md files** - Check for AGENTS.md files in the project root and subdirectories. Create new ones to share context with other agents. Keep them up to date when making changes to documented features, then commit and push.
 - **This file is tracked in a git repo** — if you modify it, commit and push the repo it lives in (resolve the symlink to find the repo root).
 - **Skills and agent files are also in git repos** — the same rule applies: if you modify skill or agent files, resolve symlinks to find the containing repo root, then commit and push.
-- **Prefer subagent parallelization** - When planning complex multi-step tasks, dispatch non-interdependent work to subagents in parallel. Use the dispatch guide below to pick the right subagent for each task.
-
-## Code Style
-
-- **Comments are terse** omit if code is self-explanatory, use sparingly, keep short.
-- **Follow existing patterns** in the codebase.
-- **Type safety is preferred** when supported by the language.
-- **Keep responses concise** - max 4 lines unless user asks for detail.
-- **Don't reinvent the wheel** - If a robust library is available, prefer this over implementing something from scratch. Use standard or existing package management solutions. Don't re-test library functionality.
-
-## Server Skills
-
-Server-specific knowledge is often available via opencode skills. Use the `skill` tool to discover and load them on-demand.
-
-## Browser Automation: agent-browser
-
-**Load the skill for full instructions:** Use the `skill` tool with name `agent-browser`.
 
 ## Subagent Dispatch
 
 You are the only agent that dispatches subagents. Subagents never dispatch others. Use the Task tool with the appropriate subagent type.
+
+### Applies in ALL modes (Plan and Build)
+
+- **Plan mode**: Dispatch `@flash`/`@hurry` for exploration, codebase searches, and info-gathering in parallel. Never read files sequentially when 2+ subagents could gather the same info faster.
+- **Build mode**: Dispatch `@kimi`/`@hurry`/`@flash` for independent implementation tasks in parallel. The primary model orchestrates and handles only cross-cutting work.
 
 ### Decision Matrix
 
@@ -50,8 +39,26 @@ You are the only agent that dispatches subagents. Subagents never dispatch other
 
 ### Rules for Dispatching
 
-- **Parallelize aggressively** — when you have 2+ independent tasks, dispatch them in parallel to different subagents.
+- **Parallelize aggressively** — If a task has 2+ independent steps, you MUST dispatch them to subagents in parallel. Only skip dispatch if steps are truly sequential or require full conversation context. Doing everything yourself is the exception, not the default.
 - **Match complexity to model** — don't send trivial tasks to `@kimi` or demanding tasks to `@hurry`.
 - **Flash tasks must be well-defined** — pattern-based edits, metadata changes, or exploration only. No architectural decisions.
 - **Always specify the subagent type** when presenting a plan. Say "I'll dispatch X to `@kimi`, Y to `@hurry`".
 - **Present subagent choice in plan** — before entering Build mode, explain which subagents will handle which parts.
+- **Self-check before acting** — Before executing multi-step work, explicitly ask: "Can any of these steps be dispatched to a subagent?" If yes, dispatch them. When your todo list has 3+ items, at least half should be dispatched to subagents where possible.
+- **The primary model only does work that requires full conversation context** — orchestration, planning, cross-cutting changes. All other work goes to subagents.
+
+## Code Style
+
+- **Comments are terse** omit if code is self-explanatory, use sparingly, keep short.
+- **Follow existing patterns** in the codebase.
+- **Type safety is preferred** when supported by the language.
+- **Keep responses concise** - max 4 lines unless user asks for detail.
+- **Don't reinvent the wheel** - If a robust library is available, prefer this over implementing something from scratch. Use standard or existing package management solutions. Don't re-test library functionality.
+
+## Server Skills
+
+Server-specific knowledge is often available via opencode skills. Use the `skill` tool to discover and load them on-demand.
+
+## Browser Automation: agent-browser
+
+**Load the skill for full instructions:** Use the `skill` tool with name `agent-browser`.
