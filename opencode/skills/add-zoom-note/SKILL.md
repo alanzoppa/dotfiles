@@ -7,23 +7,36 @@ description: Format a raw Zoom AI meeting summary into a properly structured mar
 
 Use this skill when the user pastes a raw Zoom AI Companion meeting summary and wants it formatted and filed into the notes corpus.
 
-The notes live at `~/dev/notes-browser/notes/` and are watched by a FastAPI backend that auto-ingests them into ChromaDB with embeddings (Ollama `nomic-embed-text-v2-moe`). After dropping the file you **must** verify the watcher event.
+The notes live at `~/dev/notes-browser/notes/` and are watched by a FastAPI backend that auto-ingests them into ChromaDB with embeddings (Ollama `nomic-embed-text-v2-moe`). After dropping the file you **must** verify ingestion.
 
 ---
 
 ## Workflow
 
 1. **Parse** the Zoom paste: extract meeting title, date/time, participants, and topic blocks. Convert relative dates ("yesterday", "Tuesday") to absolute using today's date from the environment context.
-2. **Check for a prior note in the same series** before writing. Run:
-   ```bash
-   ls ~/dev/notes-browser/notes/ | grep -i '<slug>' | tail -5
+
+2. **Look up the calendar event** to get the exact start time, confirm the title, and grab the `htmlLink` for the References footer:
    ```
-   If this is a recurring series (1:1, squad meeting, working group), read the most recent prior note to match tone, section structure, tag set, and `series:` value. Consistency across a series matters more than re-deriving style from scratch each time.
-3. **Build filename**: `YYYYMMDDTHHMM-<slug>.md` where slug is kebab-case of the title, ASCII-only.
-4. **Generate frontmatter** per the spec below.
-5. **Write the body** per the spec below.
-6. **Drop the file** in `~/dev/notes-browser/notes/` (flat, no subdirs).
-7. **Verify ingestion** — see Verification section.
+   list_events(startTime="<date>T08:00:00-05:00", endTime="<date>T18:00:00-05:00", fullText="<keyword>")
+   ```
+   - Use `start.dateTime` for the filename timestamp (e.g. `T1130`).
+   - Use attendee emails to confirm participant identity when the Zoom paste only has first names.
+   - If no event is found, fall back to user-provided time or date-only filename.
+
+3. **Resolve the series and prior context** using the `notes-browser` MCP tools — run these in parallel:
+   - `list_series` — find the canonical series name (exact spelling/casing) that matches this meeting. Use it verbatim in frontmatter.
+   - `get_series_history(series_name, limit=3)` — get recent notes in the series. Use the returned note IDs to match the slug convention for the filename, and use the frontmatter (tags, participants) to stay consistent with prior entries.
+   - `lookup_person(name)` — resolve first-name-only mentions from the Zoom paste to full names. Call once per ambiguous name.
+
+4. **Build filename**: `YYYYMMDDTHHMM-<slug>.md`. Match the slug pattern of prior notes in the same series (visible in the IDs returned by `get_series_history`).
+
+5. **Generate frontmatter** per the spec below.
+
+6. **Write the body** per the spec below.
+
+7. **Drop the file** in `~/dev/notes-browser/notes/` (flat, no subdirs).
+
+8. **Verify ingestion** — see Verification section.
 
 ---
 
@@ -31,7 +44,7 @@ The notes live at `~/dev/notes-browser/notes/` and are watched by a FastAPI back
 
 `YYYYMMDDTHHMM-<slug>.md` — e.g. `20260417T1000-alan-vik-1-1.md`
 
-- Slug: lowercase, hyphen-separated, ASCII. Drop punctuation; `1:1` becomes `1-1` or `11`. Match the slug of prior notes in the same series (check with `ls ~/dev/notes-browser/notes/ | grep <series-keyword>`).
+- Slug: lowercase, hyphen-separated, ASCII. Drop punctuation; `1:1` becomes `1-1` or `11`.
 - If time is unknown, fall back to `YYYYMMDD-<slug>.md`.
 
 ---
@@ -59,12 +72,11 @@ series: <Series Name>   # only if recurring; omit otherwise
 Rules:
 - `folder` is always `Meeting Summaries` for Zoom AI summaries.
 - `source` is **always** `"Zoom AI"` (quoted) — do not copy the string from prior notes that say `"Evergreen"`.
-- `created` uses the YAML anchor `&id001` and `modified` references it with `*id001` when the note is created from the summary (they are equal). If the user later edits, update `modified` separately.
+- `created` uses the YAML anchor `&id001` and `modified` references it with `*id001` when the note is created from the summary (they are equal).
 - Timezone: default to `-05:00` (user's operating timezone — Central). Only diverge if the paste specifies otherwise.
 - `source_id` is `meeting:` + filename stem, e.g. `meeting:20260417T1000-alan-vik-1-1`.
-- `participants` always includes **Alan Zoppa**. Use full first + last names. Infer surnames from prior notes in the same series when the Zoom paste only has first names.
-- `series`: include for recurring meetings (1:1s, squad meetings, working groups). Format matches the prior note exactly (e.g. `Alan/Jeff 1:1`, `Convert Demand Engineering`, `Eng Interviews working group`). Omit for one-off meetings.
-- Check existing notes for spelling of proper nouns.
+- `participants` always includes **Alan Zoppa**. Use full first + last names; resolve via `lookup_person` when the paste has first names only.
+- `series`: use the canonical name from `list_series` verbatim. Omit for one-off meetings.
 
 ### Canonical tag vocabulary
 
@@ -93,29 +105,28 @@ Pick 2–4 from this list. **Do not invent new tags** unless no existing tag fit
 Structure (in order):
 
 1. `# <Title>` — H1 matching frontmatter title exactly.
-2. Optional `Notes` line on its own (carried from prior notes in some series — match what the series uses).
-3. `* tl;dr: <one-sentence summary>` — **always the first bullet**. Bold key people (`**Alan Zoppa**`) and projects (`**Octave (EBCG)**`). One sentence, packed with the meeting's actual outcome — not "we discussed X" but "X was decided / Y is blocked on Z".
-4. **Topic sections.** Choose ONE structure and stay consistent within the note:
+2. Optional `Notes` line on its own (carry forward if the series uses it).
+3. `* tl;dr: <one-sentence summary>` — **always the first bullet**. Bold key people (`**Alan Zoppa**`) and projects (`**Octave (EBCG)**`). One sentence, packed with the actual outcome — not "we discussed X" but "X was decided / Y is blocked on Z".
+4. **Topic sections.** Choose ONE structure and stay consistent within the series:
    - **Nested-bullet style** (most common, matches 1:1s): `* **Section Name**` then sub-bullets `  * ...`.
    - **H2 style** (used for longer working-group summaries): `## Section Name` then regular bullets.
-   Match the style of the prior note in the same series if one exists.
+   Match the style used in the series history returned by `get_series_history`.
 5. `* Action Items` (or `## Action Items`) — bullets of the form `**<Person Name>**: <action>.`
-6. `* Reference / Glossary` (or `## Reference / Glossary`) — bullets of the form `**<Term>**: <definition>.` Include any acronym or project name used in the note that a future reader might not recognize.
+6. `* Reference / Glossary` (or `## Reference / Glossary`) — bullets of the form `**<Term>**: <definition>.` Include any acronym or project name a future reader might not recognize.
 7. Optional footer:
    ```
    ---
    ## References
-   - Calendar: <gcal link if provided, else "(not synced — recovered from Zoom Hub raw summary)">
+   - Calendar: <gcal htmlLink, or "(not synced — recovered from Zoom Hub raw summary)">
    ```
-   Only include the Calendar line if the user provides a link OR the Zoom paste is clearly not calendar-synced. The notes themselves must be a single list indented for clarity.
 
 ### Inline conventions
 
-- **Bold people on each mention**: `**Jeff Wiley**`. On first mention, include role in parens: `**Jeff Wiley** (Product)`, `**Kyle Kermgard** (Sr. Engineer 1)`.
-- **Bold project / product names**: `**Octave (EBCG)**`, `**RCM**`, `**FHIR API**`, `**Therapy Finder**`, `**Greenhouse**`, `**Docker**`.
-- Keep sentences declarative and specific. Preserve concrete numbers, dates, and names from the Zoom paste — don't generalize.
-- Drop Zoom filler: "Thanks everyone", "good meeting", timestamps in the transcript, etc.
-- If the Zoom paste used backslash-escaped parens like `Sr. Engineer 1\)`, strip the backslashes — they are Zoom markdown artifacts.
+- **Bold people on each mention**: `**Jeff Wiley**`. On first mention, include role in parens: `**Jeff Wiley** (Product)`.
+- **Bold project / product names**: `**Octave (EBCG)**`, `**RCM**`, `**Therapy Finder**`, etc.
+- Keep sentences declarative and specific. Preserve concrete numbers, dates, and names.
+- Drop Zoom filler: "Thanks everyone", "good meeting", transcript timestamps, etc.
+- Strip backslash-escaped parens (`Sr. Engineer 1\)` → `Sr. Engineer 1)`) — Zoom markdown artifacts.
 
 ---
 
@@ -133,24 +144,21 @@ Do not create subdirectories. The notes dir is flat by design.
 
 ## Verification
 
-After writing, confirm the watcher picked up the file. The FastAPI backend runs on port 8000 and has a `/api/watcher/status` endpoint.
+After writing, call `get_stats` (notes-browser MCP) and compare `total_notes` to the count before writing. Then confirm the specific note was ingested:
 
-```bash
-sleep 7 && curl -s http://localhost:8000/api/watcher/status | python3 -m json.tool
+```
+get_notes_since(timestamp="<ISO timestamp just before you wrote the file>")
 ```
 
-(The watcher debounces for 5 seconds before processing, so sleep at least 6–7.)
+Look for your filename stem in the returned note IDs.
 
-Look for an entry in `recent_events` with `"type": "upsert"` and your filename. Also cross-check the note count went up by 1:
-
+If the MCP tools error or return stale data (collection UUID mismatch after a force re-ingest), fall back to:
 ```bash
-curl -s http://localhost:8000/api/stats | python3 -m json.tool
+sleep 7 && curl -s http://localhost:8000/api/stats | python3 -m json.tool
 ```
 
 If the backend is not running, tell the user:
 > Backend at localhost:8000 is not responding. The file is written to disk but won't be indexed until you start the backend (`cd ~/dev/notes-browser/backend && source .venv/bin/activate && uvicorn main:app --reload --port 8000`). Ollama must also be running (`ollama serve`).
-
-If the watcher is running but your file is NOT in `recent_events` after 10 seconds, something went wrong — surface the error rather than claiming success.
 
 ---
 
@@ -158,7 +166,7 @@ If the watcher is running but your file is NOT in `recent_events` after 10 secon
 
 Keep it terse:
 - Filename written.
-- Confirmed watcher event + new `total_notes` count.
-- Any tags/participants you inferred from prior notes (so the user can correct).
+- Confirmed ingestion + new `total_notes` count.
+- Any tags/participants you inferred (so the user can correct).
 
-Don't re-print the whole note body — the user pasted the source, they know what's in it.
+Don't re-print the whole note body.
