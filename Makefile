@@ -5,7 +5,10 @@ OPENCODE_CONFIG := $(HOME)/.config/opencode
 OPENCODE_SRC := $(DOTFILES_DIR)opencode/
 OPENCODE_LINKS := AGENTS.md agents skills
 
-.PHONY: setup check update opencode opencode-unlink
+IMPECCABLE_SUBMODULE := $(DOTFILES_DIR)_submodules/impeccable/.opencode/skills/impeccable
+IMPECCABLE_SKILL := $(DOTFILES_DIR)opencode/skills/impeccable
+
+.PHONY: setup check update opencode opencode-unlink impeccable-skill
 
 setup:
 	@echo "=== Dotfiles Setup ==="
@@ -60,6 +63,7 @@ setup:
 		echo "  Warning: npx not found, cannot install opencode"; \
 	fi
 	@$(MAKE) --no-print-directory opencode
+	@$(MAKE) --no-print-directory impeccable-skill
 	@echo ""
 	@echo "=== Setup Complete ==="
 	@echo "Run 'chsh -s /bin/zsh' to change your shell"
@@ -72,6 +76,7 @@ update:
 	@echo "=== Updating Dotfiles ==="
 	python3 bin/build_links.py
 	@$(MAKE) --no-print-directory opencode
+	@$(MAKE) --no-print-directory impeccable-skill
 	@echo "Updating oh-my-zsh..."
 	@sh .oh-my-zsh/tools/upgrade.sh
 	@echo "Updating submodules..."
@@ -109,3 +114,32 @@ opencode-unlink:
 			echo "  RM   $$dst"; \
 		fi; \
 	done
+
+impeccable-skill:
+	@sub="$(IMPECCABLE_SUBMODULE)"; \
+	skill="$(IMPECCABLE_SKILL)"; \
+	if [ ! -d "$$sub" ]; then \
+		echo "  SKIP impeccable submodule not found at $$sub"; \
+	else \
+		mkdir -p "$$skill"; \
+		for subdir in reference scripts; do \
+			dst="$$skill/$$subdir"; \
+			src="$$sub/$$subdir"; \
+			rel=$$(python3 -c "import os.path; print(os.path.relpath('$$src','$$skill'))"); \
+			if [ -L "$$dst" ]; then \
+				cur=$$(readlink "$$dst"); \
+				if [ "$$cur" = "$$rel" ]; then \
+					echo "  OK   $$dst -> $$rel"; \
+				else \
+					rm "$$dst"; \
+					ln -s "$$rel" "$$dst"; \
+					echo "  FIX  $$dst -> $$rel (was $$cur)"; \
+				fi; \
+			elif [ -e "$$dst" ]; then \
+				echo "  SKIP $$dst exists and is not a symlink"; \
+			else \
+				ln -s "$$rel" "$$dst"; \
+				echo "  LINK $$dst -> $$rel"; \
+			fi; \
+		done; \
+	fi

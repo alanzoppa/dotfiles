@@ -63,6 +63,5 @@ MCP servers (notes-browser, Linear, Notion, GitHub) are enabled in `opencode.jso
 
 Server-specific knowledge is often available via opencode skills. Use the `skill` tool to discover and load them on-demand.
 
-## Browser Automation: agent-browser
-
-**Load the skill for full instructions:** Use the `skill` tool with name `agent-browser`.
+- **impeccable**: Frontend design skill — craft, shape, audit, critique, polish, animate, colorize, typeset, layout, delight, and more. Covers UX review, anti-patterns, accessibility, typography, motion, live variant mode. Installed via `_submodules/impeccable` submodule. Use the `skill` tool with name `impeccable`.
+- **agent-browser**: Browser automation via agent-browser CLI. Use the `skill` tool with name `agent-browser`.

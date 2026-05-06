@@ -11,10 +11,11 @@ This repo must work on both **Linux** and **macOS**.
 
 ## Makefile
 
-- `make setup` — full install: conflict check, submodules, symlinks, oh-my-zsh (skipped if present, `.zshrc` symlink restored after), ack (cross-platform), opencode (npx install + config symlinks)
+- `make setup` — full install: conflict check, submodules, symlinks, oh-my-zsh (skipped if present, `.zshrc` symlink restored after), ack (cross-platform), opencode (npx install + config symlinks), impeccable-skill
 - `make check` — conflict check only
 - `make update` — rebuild links, opencode symlinks, upgrade oh-my-zsh, update submodules
 - `make opencode` — symlink `opencode/` (AGENTS.md, agents, skills) into `~/.config/opencode/`
 - `make opencode-unlink` — remove opencode symlinks
+- `make impeccable-skill` — create `reference/` and `scripts/` symlinks inside `opencode/skills/impeccable/` pointing to `_submodules/impeccable/.opencode/skills/impeccable/`
 - `DOTFILES_DIR` is auto-detected from Makefile location
 - `readlink` used without `-f` (not portable on macOS)
