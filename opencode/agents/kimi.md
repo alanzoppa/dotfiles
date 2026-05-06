@@ -1,7 +1,7 @@
 ---
 description: Smarter subagent for preplanned demanding work — architectural changes, refactoring, complex feature implementation
 mode: subagent
-model: ollama-cloud/kimi-k2.6
+model: ollama-cloud/kimi-k2.6:cloud
 temperature: 0.3
 hidden: true
 permission:
