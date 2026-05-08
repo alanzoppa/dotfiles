@@ -1,3 +1,8 @@
+---
+name: react-force-graph
+description: Work with react-force-graph / force-graph / 3d-force-graph libraries. Use for force-directed graphs, network visualizations, graph layouts (2D Canvas, 3D Three.js, VR, AR), node/link styling, custom rendering, force engine tuning, and interaction patterns. Covers ForceGraph2D, ForceGraph3D, ForceGraphVR, ForceGraphAR components.
+---
+
 # react-force-graph Skill
 
 React bindings for force-directed graphs. Four components: `ForceGraph2D` (Canvas), `ForceGraph3D` (Three.js), `ForceGraphVR` (A-Frame), `ForceGraphAR` (AR.js). The 2D and 3D variants share most props; VR/AR are subsets.
