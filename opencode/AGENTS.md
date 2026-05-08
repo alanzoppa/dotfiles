@@ -58,6 +58,7 @@ MCP servers (notes-browser, Linear, Notion, GitHub) are enabled in `opencode.jso
 - **Type safety is preferred** when supported by the language.
 - **Keep responses concise** - max 4 lines unless user asks for detail.
 - **Don't reinvent the wheel** - If a robust library is available, prefer this over implementing something from scratch. Use standard or existing package management solutions. Don't re-test library functionality.
+- **Don't fight the framework/library** - Counter with framework-centric suggestions when the user's request is a poor fit. Look for a simpler solution that meets the users needs.
 
 ## Server Skills
 
