@@ -16,17 +16,16 @@ You are the only agent that dispatches subagents. Subagents never dispatch other
 
 ### Applies in ALL modes (Plan and Build)
 
-- **Plan mode**: Dispatch `@flash`/`@hurry` for exploration, codebase searches, and info-gathering in parallel. Never read files sequentially when 2+ subagents could gather the same info faster.
-- **Build mode**: Dispatch `@kimi`/`@hurry`/`@flash` for independent implementation tasks in parallel. The primary model orchestrates and handles only cross-cutting work.
+- **Plan mode**: Dispatch `@flash`/`@explore` for exploration, codebase searches, and info-gathering in parallel. Never read files sequentially when 2+ subagents could gather the same info faster.
+- **Build mode**: Dispatch `@explore`/`@flash` for independent implementation tasks in parallel. The primary model orchestrates and handles only cross-cutting work.
 
 ### Decision Matrix
 
 | Task Type | Subagent | Model | Why |
 |---|---|---|---|
 | Exploring many files, batch metadata edits, pattern-based find-and-replace | `@flash` | `ollama-cloud/deepseek-v4-flash` | Token-efficient, fast on large sets |
-| Writing standalone files, tests, configs, migrations, data transforms | `@hurry` | `ollama-cloud/minimax-m2.7` | Fast for well-defined, self-contained work |
-| Architectural changes, refactoring, complex feature implementation | `@kimi` | `ollama-cloud/kimi-k2.6` | Smarter model for tasks requiring judgment |
-| Open-ended codebase searches, grepping many patterns across many files | `@hurry` | `ollama-cloud/minimax-m2.7` | Avoids wasting primary context |
+| Writing standalone files, tests, configs, migrations, data transforms, simple code generation | `@flash` | `ollama-cloud/deepseek-v4-flash` | Fast for well-defined, self-contained work |
+| Open-ended codebase searches, grepping many patterns across many files, medium-complexity implementation | `@explore` | `ollama-cloud/deepseek-v4-flash` | Versatile agent for exploration and implementation |
 | Multi-step orchestration, planning, tasks requiring deep conversation context | Primary model | Your model | Only the primary model has full context |
 
 ## Subagent MCP limitation
@@ -36,17 +35,17 @@ MCP servers (notes-browser, Linear, Notion, GitHub) are enabled in `opencode.jso
 ### Capability Matrix
 
 | Subagent | Model | Temp | read | glob | grep | edit | bash | webfetch | task |
-|---|---|---|---|---|---|---|---|---|---|
-| `@kimi` | `ollama-cloud/kimi-k2.6` | 0.3 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — |
-| `@hurry` | `ollama-cloud/minimax-m2.7` | 0.2 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — |
+|---|---|---|---|---|---|---|---|---|---|---|
 | `@flash` | `ollama-cloud/deepseek-v4-flash` | 0.1 | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
+| `@explore` | `ollama-cloud/deepseek-v4-flash` | 0.1 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `@scout` | `ollama-cloud/deepseek-v4-flash` | 0.1 | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
 
 ### Rules for Dispatching
 
 - **Parallelize aggressively** — If a task has 2+ independent steps, you MUST dispatch them to subagents in parallel. Only skip dispatch if steps are truly sequential or require full conversation context. Doing everything yourself is the exception, not the default.
-- **Match complexity to model** — don't send trivial tasks to `@kimi` or demanding tasks to `@hurry`.
+- **Match complexity to agent** — use `@flash` for well-defined tasks, `@explore` for open-ended work.
 - **Flash tasks must be well-defined** — pattern-based edits, metadata changes, or exploration only. No architectural decisions.
-- **Always specify the subagent type** when presenting a plan. Say "I'll dispatch X to `@kimi`, Y to `@hurry`".
+- **Always specify the subagent type** when presenting a plan. Say "I'll dispatch X to `@flash`, Y to `@explore`".
 - **Present subagent choice in plan** — before entering Build mode, explain which subagents will handle which parts.
 - **Self-check before acting** — Before executing multi-step work, explicitly ask: "Can any of these steps be dispatched to a subagent?" If yes, dispatch them. When your todo list has 3+ items, at least half should be dispatched to subagents where possible.
 - **The primary model only does work that requires full conversation context** — orchestration, planning, cross-cutting changes. All other work goes to subagents.
