@@ -70,4 +70,3 @@ if [[ -a ~/.$(hostname)_zshrc ]]; then
     source ~/.$(hostname)_zshrc
 fi
 
-
